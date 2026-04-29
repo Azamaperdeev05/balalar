@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="kz.diploma.securefinance.NavGraphArgTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-04-27T04:49:02" hostname="AZAMAT" time="0.064">
+  <properties/>
+  <testcase name="nav_graph-та long аргументтерінде defaultValue болмауы керек" classname="kz.diploma.securefinance.NavGraphArgTest" time="0.05"/>
+  <testcase name="nav_graph-та барлық fragment-тар name атрибутына ие болуы керек" classname="kz.diploma.securefinance.NavGraphArgTest" time="0.013"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

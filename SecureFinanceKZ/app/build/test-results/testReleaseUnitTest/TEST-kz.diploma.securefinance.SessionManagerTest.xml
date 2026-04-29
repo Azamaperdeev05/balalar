@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="kz.diploma.securefinance.SessionManagerTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2026-04-27T04:49:02" hostname="AZAMAT" time="0.589">
+  <properties/>
+  <testcase name="lock шақырылғаннан кейін isUnlocked false болуы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.0"/>
+  <testcase name="shouldLock timeout өткенде true қайтаруы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.213"/>
+  <testcase name="Бастапқыда қосымша құлыпталған болуы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.001"/>
+  <testcase name="Құлыпталған кезде shouldLock false қайтаруы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.0"/>
+  <testcase name="unlock шақырылғаннан кейін isUnlocked true болуы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.0"/>
+  <testcase name="touch lastActive уақытын жаңартуы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.263"/>
+  <testcase name="autoLockTimeoutMs нөл немесе теріс болса shouldLock ешқашан true болмауы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.108"/>
+  <testcase name="shouldLock timeout өтпесе false қайтаруы керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.001"/>
+  <testcase name="lock кілтті жадтан өшіруі керек" classname="kz.diploma.securefinance.SessionManagerTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

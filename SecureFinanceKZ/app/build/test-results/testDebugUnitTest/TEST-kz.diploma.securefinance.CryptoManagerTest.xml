@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="kz.diploma.securefinance.CryptoManagerTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2026-04-27T04:48:32" hostname="AZAMAT" time="0.666">
+  <properties/>
+  <testcase name="Кілт ұзындығы 256 бит (32 байт) болуы керек" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.18"/>
+  <testcase name="PBKDF2 әр түрлі salt-та әр түрлі нәтиже береді" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.139"/>
+  <testcase name="PBKDF2 детерминирленген — бір PIN + бір salt әрдайым бір нәтиже" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.077"/>
+  <testcase name="Қате кілтпен дешифрлау null қайтаруы керек" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.104"/>
+  <testcase name="AES-GCM шифрлау мен дешифрлау кері операция болуы керек" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.055"/>
+  <testcase name="Шифрланған деректер plaintext-тен ерекше болуы керек" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.035"/>
+  <testcase name="PBKDF2 әр түрлі PIN-де әр түрлі нәтиже береді" classname="kz.diploma.securefinance.CryptoManagerTest" time="0.075"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

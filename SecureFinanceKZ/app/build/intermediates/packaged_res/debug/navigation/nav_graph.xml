@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="kz.diploma.securefinance.ui.dashboard.DashboardFragment"
+        android:label="@string/nav_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="kz.diploma.securefinance.ui.transactions.TransactionsFragment"
+        android:label="@string/nav_transactions"
+        tools:layout="@layout/fragment_transactions" />
+
+    <!-- transactionId Bundle-дан оқылады: arguments?.getLong("transactionId", -1L) -->
+    <fragment
+        android:id="@+id/addEditTransactionFragment"
+        android:name="kz.diploma.securefinance.ui.transactions.AddEditTransactionFragment"
+        android:label="@string/transaction_add"
+        tools:layout="@layout/fragment_add_edit_transaction" />
+
+    <fragment
+        android:id="@+id/statisticsFragment"
+        android:name="kz.diploma.securefinance.ui.statistics.StatisticsFragment"
+        android:label="@string/nav_statistics"
+        tools:layout="@layout/fragment_statistics" />
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="kz.diploma.securefinance.ui.settings.SettingsFragment"
+        android:label="@string/nav_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/accountsFragment"
+        android:name="kz.diploma.securefinance.ui.accounts.AccountsFragment"
+        android:label="@string/accounts_title"
+        tools:layout="@layout/fragment_accounts" />
+
+    <!-- accountId Bundle-дан оқылады: arguments?.getLong("accountId", -1L) -->
+    <fragment
+        android:id="@+id/accountEditFragment"
+        android:name="kz.diploma.securefinance.ui.accounts.AccountEditFragment"
+        android:label="@string/account_add"
+        tools:layout="@layout/fragment_account_edit" />
+
+    <fragment
+        android:id="@+id/categoriesFragment"
+        android:name="kz.diploma.securefinance.ui.categories.CategoriesFragment"
+        android:label="@string/categories_title"
+        tools:layout="@layout/fragment_categories" />
+
+    <!-- categoryId Bundle-дан оқылады -->
+    <fragment
+        android:id="@+id/categoryEditFragment"
+        android:name="kz.diploma.securefinance.ui.categories.CategoryEditFragment"
+        android:label="@string/category_add"
+        tools:layout="@layout/fragment_category_edit" />
+
+    <fragment
+        android:id="@+id/changePinFragment"
+        android:name="kz.diploma.securefinance.ui.settings.ChangePinFragment"
+        android:label="@string/change_pin_title"
+        tools:layout="@layout/fragment_change_pin" />
+
+    <fragment
+        android:id="@+id/backupFragment"
+        android:name="kz.diploma.securefinance.ui.settings.BackupFragment"
+        android:label="@string/backup_title"
+        tools:layout="@layout/fragment_backup" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="kz.diploma.securefinance.ui.settings.AboutFragment"
+        android:label="@string/about_title"
+        tools:layout="@layout/fragment_about" />
+
+</navigation>

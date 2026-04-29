@@ -1,0 +1,94 @@
+[
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\view_pin_keypad.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\view_pin_keypad.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\item_transaction_header.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\item_transaction_header.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_settings.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\item_account.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\item_account.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_account_edit.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_account_edit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_change_pin.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_change_pin.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_about.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_about.xml"
+    },
+    {
+        "merged": "kz.diploma.securefinance.app-mergeDebugResources-55:/layout/activity_setup.xml",
+        "source": "kz.diploma.securefinance.app-main-58:/layout/activity_setup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_category_edit.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_category_edit.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\widget_balance.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\widget_balance.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\activity_auth.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\activity_auth.xml"
+    },
+    {
+        "merged": "kz.diploma.securefinance.app-mergeDebugResources-55:/layout/activity_auth.xml",
+        "source": "kz.diploma.securefinance.app-main-58:/layout/activity_auth.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_categories.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_categories.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\item_category.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\item_category.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\item_transaction.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\item_transaction.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_transactions.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_transactions.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_add_edit_transaction.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_add_edit_transaction.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_statistics.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_statistics.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\activity_setup.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\activity_setup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_backup.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_backup.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_accounts.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_accounts.xml"
+    },
+    {
+        "merged": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-mergeDebugResources-55:\\layout\\fragment_dashboard.xml",
+        "source": "C:\\Users\\Acer\\.gradle\\daemon\\8.2.1\\kz.diploma.securefinance.app-main-58:\\layout\\fragment_dashboard.xml"
+    }
+]
