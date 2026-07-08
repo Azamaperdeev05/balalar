@@ -20,35 +20,35 @@ export const GameTwo: React.FC = () => {
   const illustrationType = getIllustrationType(searchTask);
 
   return (
-    <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10">
+    <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10 select-none">
       
-      <span className="text-sm md:text-base font-bold bg-indigo-600 border border-indigo-500 text-white px-5 py-2.5 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.4)] tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
-        <BookOpen className="w-5 h-5 stroke-[2.5px]" />
+      <span className="text-xs md:text-sm font-semibold bg-slate-800 border border-slate-700 text-slate-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display flex items-center gap-2 flex-shrink-0">
+        <BookOpen className="w-5 h-5 stroke-[2.5px] text-indigo-400" />
         Сөзді тауып көр 📖
       </span>
 
       {/* Main Task Card */}
       <motion.div
         key={searchTask}
-        initial={{ scale: 0.95, opacity: 0 }}
+        initial={{ scale: 0.98, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 100, damping: 12 }}
-        className="w-full bg-zinc-900/40 backdrop-blur-xl border border-zinc-800 text-white rounded-2xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
+        className="w-full bg-slate-800/80 border border-slate-700/50 text-white rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
       >
         {/* Rules explanation */}
-        <p className="text-xs md:text-sm font-semibold text-zinc-400 max-w-xl text-center mb-6 leading-relaxed">
+        <p className="text-xs md:text-sm font-semibold text-slate-400 max-w-xl text-center mb-6 leading-relaxed">
           Әр топқа бірдей кітап беріледі. Төмендегі тапсырманы кітап беттерінен немесе бөлмеден мүмкіндігінше ең бірінші болып тауып көрсеткен команда ұпай алады!
         </p>
 
         {/* Task display area */}
-        <div className="w-full max-w-xl bg-zinc-950/60 border border-zinc-800/80 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-6 mb-6 shadow-inner min-h-[220px] justify-center">
+        <div className="w-full max-w-xl bg-slate-950/60 border border-slate-850 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-6 mb-6 shadow-inner min-h-[220px] justify-center">
           {/* Custom Illustration */}
-          <div className="w-28 h-28 md:w-36 md:h-36 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center p-2.5 shadow-md">
-            <Illustration type={illustrationType} className="w-full h-full object-contain filter grayscale brightness-125 group-hover:grayscale-0 transition-all duration-300" />
+          <div className="w-28 h-28 md:w-36 md:h-36 bg-slate-900 border border-slate-850 rounded-xl flex items-center justify-center p-2.5 shadow-md">
+            <Illustration type={illustrationType} className="w-full h-full object-contain" />
           </div>
 
           {/* Active task text */}
-          <h2 className="text-xl md:text-2xl font-black font-display text-white text-center tracking-wide leading-snug">
+          <h2 className="text-xl md:text-2xl font-extrabold font-display text-white text-center tracking-wide leading-snug">
             {searchTask}
           </h2>
         </div>
@@ -57,9 +57,9 @@ export const GameTwo: React.FC = () => {
         <div className="w-full max-w-xs">
           <button
             onClick={nextSearchTask}
-            className="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-500 border border-indigo-500/50 text-white font-bold font-display text-base rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3.5 px-6 bg-gradient-to-r from-[#4F46E5] to-[#6366F1] border-indigo-500/30 text-white font-bold font-display text-sm uppercase tracking-wider rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 hover:shadow-[0_0_20px_rgba(99,102,241,0.25)]"
           >
-            <SkipForward className="w-5 h-5 stroke-[2.5px]" />
+            <SkipForward className="w-4 h-4 stroke-[2.5px]" />
             <span>КЕЛЕСІ ТАПСЫРМА</span>
           </button>
         </div>

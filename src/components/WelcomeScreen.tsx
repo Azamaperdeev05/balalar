@@ -61,13 +61,13 @@ export const WelcomeScreen: React.FC = () => {
         transition={{ type: 'spring', stiffness: 100, damping: 15 }}
         className="max-w-3xl flex flex-col items-center gap-4 mb-8 md:mb-12"
       >
-        <span className="text-xs md:text-sm font-bold bg-zinc-900 border border-zinc-800 text-zinc-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display">
+        <span className="text-xs md:text-sm font-semibold bg-slate-800 border border-slate-700 text-slate-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display">
           Кітап Оқу Кеші 🎉
         </span>
-        <h1 className="text-4xl md:text-6xl lg:text-7xl font-black font-display tracking-wide text-white mt-2 leading-tight">
+        <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold font-display tracking-tight text-white mt-2 leading-tight">
           Кітап әлемі ойындары
         </h1>
-        <p className="text-sm md:text-lg font-medium font-display text-zinc-400 max-w-2xl px-2">
+        <p className="text-sm md:text-lg font-medium font-display text-slate-400 max-w-2xl px-2">
           Команда болып ойнаңыздар, кітап оқып, көңіл көтеріңіздер!
         </p>
       </motion.div>
@@ -81,10 +81,10 @@ export const WelcomeScreen: React.FC = () => {
       >
         <button
           onClick={() => handleStartGame(0)}
-          className="group px-12 md:px-16 py-4.5 md:py-5 bg-white hover:bg-zinc-200 text-zinc-950 text-xl md:text-2xl font-bold font-display tracking-wide rounded-xl shadow-[0_0_25px_rgba(255,255,255,0.15)] hover:shadow-[0_0_30px_rgba(99,102,241,0.25)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 relative overflow-hidden"
+          className="group px-12 md:px-16 py-4.5 md:py-5 bg-gradient-to-r from-[#4F46E5] to-[#6366F1] hover:from-[#6366F1] hover:to-[#4F46E5] text-white text-xl md:text-2xl font-bold font-display tracking-wide rounded-2xl shadow-xl hover:shadow-[0_0_30px_rgba(99,102,241,0.3)] hover:scale-105 active:scale-95 transition-all flex items-center gap-3 relative overflow-hidden"
         >
           <span>ОЙЫНДЫ БАСТАУ</span>
-          <ArrowRight className="w-6 h-6 md:w-8 md:h-8 stroke-[2.5px] text-zinc-950" />
+          <ArrowRight className="w-6 h-6 md:w-8 md:h-8 stroke-[2.5px] text-white group-hover:translate-x-1 transition-transform" />
         </button>
       </motion.div>
 
@@ -97,12 +97,12 @@ export const WelcomeScreen: React.FC = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: 'spring', stiffness: 100, damping: 12, delay: 0.3 + idx * 0.1 }}
             onClick={() => handleStartGame(card.index)}
-            className="cursor-pointer bg-zinc-900/40 backdrop-blur-xl border border-zinc-800 text-white rounded-2xl p-6 md:p-8 flex flex-col items-center gap-4 md:gap-6 shadow-xl hover:scale-[1.02] hover:border-zinc-700 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all duration-300 relative group overflow-hidden"
+            className="cursor-pointer bg-slate-800/80 border border-slate-700/50 text-white rounded-3xl p-8 flex flex-col items-center gap-6 shadow-xl hover:scale-[1.03] hover:border-indigo-500/50 hover:shadow-[0_0_30px_rgba(99,102,241,0.15)] transition-all duration-300 relative group overflow-hidden"
           >
             {/* Visual Frame */}
-            <div className="w-24 h-24 rounded-xl bg-zinc-950 border border-zinc-800/80 flex items-center justify-center p-2.5 shadow-inner relative">
+            <div className="w-24 h-24 rounded-xl bg-slate-900 border border-slate-850 flex items-center justify-center p-2.5 shadow-inner relative">
               <Illustration type={card.illustration} className="w-full h-full object-contain filter grayscale brightness-125 contrast-75 group-hover:grayscale-0 transition-all duration-300" />
-              <div className="absolute -top-3 -left-3 w-8 h-8 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center shadow-md">
+              <div className="absolute -top-3 -left-3 w-8 h-8 bg-slate-800 border border-slate-700 rounded-lg flex items-center justify-center shadow-md">
                 {card.icon}
               </div>
             </div>
@@ -112,14 +112,18 @@ export const WelcomeScreen: React.FC = () => {
               <h3 className="text-lg md:text-xl font-bold font-display text-white group-hover:text-indigo-400 transition-colors">
                 {card.title}
               </h3>
-              <p className="text-xs md:text-sm font-medium text-zinc-400 leading-relaxed text-center">
+              <p className="text-xs md:text-sm font-medium text-slate-400 leading-relaxed text-center">
                 {card.description}
               </p>
             </div>
             
-            {/* Hover Action indicator */}
-            <div className="mt-auto pt-2 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 text-indigo-400 font-bold font-display text-xs uppercase tracking-wider">
-              Ойнау <ArrowRight className="w-3 h-3 stroke-[2.5px]" />
+            {/* Bottom Button inside Card */}
+            <div className="w-full mt-auto pt-4 border-t border-slate-700/35">
+              <button
+                className="w-full py-2.5 bg-gradient-to-r from-indigo-600 to-indigo-500 hover:from-indigo-500 hover:to-indigo-600 text-white text-xs font-bold font-display tracking-wider uppercase rounded-xl transition-all hover:scale-102 active:scale-98 flex items-center justify-center gap-1.5 shadow"
+              >
+                <span>▶ Бастау</span>
+              </button>
             </div>
           </motion.div>
         ))}

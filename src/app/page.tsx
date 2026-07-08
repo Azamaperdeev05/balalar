@@ -22,7 +22,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-zinc-950 bg-grid-gaming relative overflow-x-hidden">
+    <div className="flex-1 flex flex-col h-full bg-[#0F172A] bg-grid-gaming relative overflow-x-hidden">
       
       {/* Navigation Header */}
       <Header />
@@ -65,7 +65,7 @@ export default function Home() {
               {/* Left Column: Game Selector and Active Game Card */}
               <div className="flex-1 flex flex-col items-center gap-6 w-full">
                 {/* Game Tabs */}
-                <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-zinc-900/60 p-1.5 rounded-2xl border border-zinc-800 w-full max-w-2xl shadow-2xl">
+                <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-slate-900/80 p-1.5 rounded-2xl border border-slate-800 w-full max-w-2xl shadow-2xl">
                   {gameTabs.map((tab) => {
                     const isActive = activeGameIndex === tab.index;
                     return (
@@ -74,8 +74,8 @@ export default function Home() {
                         onClick={() => setActiveGameIndex(tab.index)}
                         className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold font-display text-sm md:text-base border transition-all ${
                           isActive
-                            ? 'bg-indigo-600 text-white border-indigo-500 shadow-neon-accent scale-102'
-                            : 'bg-zinc-950 text-zinc-400 border-zinc-800/40 hover:bg-zinc-800 hover:text-white'
+                            ? 'bg-gradient-to-r from-[#4F46E5] to-[#6366F1] text-white border-indigo-500/30 shadow-[0_0_20px_rgba(99,102,241,0.25)] scale-102'
+                            : 'bg-slate-950 text-slate-400 border-slate-800/40 hover:bg-slate-850 hover:text-white font-medium'
                         }`}
                       >
                         {tab.icon}
@@ -105,10 +105,10 @@ export default function Home() {
       {/* Navigation Footer */}
       <Footer />
 
-      {/* Floating background decorative bubbles */}
-      <div className="absolute top-1/4 left-10 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none animate-float" />
-      <div className="absolute bottom-1/4 right-10 w-44 h-44 bg-indigo-600/3 rounded-full blur-3xl pointer-events-none animate-float-reverse" />
-      <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-white/3 rounded-full blur-2xl pointer-events-none animate-float-slow" />
+      {/* Floating background decorative bubbles - glowing cyber palette */}
+      <div className="absolute top-1/4 left-10 w-64 h-64 bg-[#4F46E5]/10 rounded-full blur-3xl pointer-events-none animate-float" />
+      <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-[#06B6D4]/10 rounded-full blur-3xl pointer-events-none animate-float-reverse" />
+      <div className="absolute bottom-10 left-1/3 w-48 h-48 bg-[#6366F1]/5 rounded-full blur-3xl pointer-events-none animate-float-slow" />
       
     </div>
   );

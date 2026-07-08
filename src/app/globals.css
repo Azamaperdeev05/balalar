@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-nunito), system-ui, sans-serif;
-  --font-display: var(--font-nunito), system-ui, sans-serif;
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-display: var(--font-manrope), system-ui, sans-serif;
   
   --animate-float: float 10s ease-in-out infinite;
   --animate-float-slow: float 15s ease-in-out infinite;
@@ -59,8 +59,8 @@ html, body {
   width: 100%;
   height: 100%;
   font-family: var(--font-sans);
-  background-color: #09090b; /* Zinc-950 - sleek black */
-  color: #fafafa; /* Zinc-50 - clean off-white */
+  background-color: #0F172A; /* Slate-900 - sleek dark mode background */
+  color: #F8FAFC; /* Slate-50 - clean text */
 }
 
 /* Sleek Minimalist Gaming HUD Utilities */
