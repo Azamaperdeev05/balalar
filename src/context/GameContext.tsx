@@ -172,7 +172,8 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     soundManager.playPop();
     setActiveScreenState(screen);
     if (screen === 'games') {
-      resetTimer(true);
+      // Auto-start timer only if not Crocodile (index 0)
+      resetTimer(activeGameIndex !== 0);
     }
   };
 
@@ -249,7 +250,12 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Crocodile Word Actions
   const toggleWordVisibility = () => {
     soundManager.playPop();
-    setIsWordVisible((prev) => !prev);
+    setIsWordVisible((prev) => {
+      const next = !prev;
+      // Start timer when word is revealed, pause when hidden
+      setTimerActive(next);
+      return next;
+    });
   };
 
   const nextCrocWord = () => {
@@ -257,7 +263,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const randomIndex = Math.floor(Math.random() * CROCODILE_WORDS.length);
     setCrocWord(CROCODILE_WORDS[randomIndex]);
     setIsWordVisible(false);
-    resetTimer(true);
+    resetTimer(false); // Reset to 120s but don't start until word is revealed
   };
 
   // Word Search Actions
@@ -293,7 +299,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setActiveGameIndex: (idx) => {
           soundManager.playPop();
           setActiveGameIndex(idx);
-          resetTimer(true);
+          resetTimer(idx !== 0); // Start timer immediately if not Crocodile
         },
         scores,
         addScore,
