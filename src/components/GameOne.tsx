@@ -4,27 +4,51 @@ import React from 'react';
 import { useGame } from '../context/GameContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Palette, Eye, EyeOff, SkipForward } from 'lucide-react';
-import { Illustration, IllustrationType } from './Illustration';
 
 export const GameOne: React.FC = () => {
   const { crocWord, isWordVisible, toggleWordVisibility, nextCrocWord } = useGame();
 
-  // Helper to resolve custom illustrations for the Crocodile words
-  const getIllustrationType = (word: string): IllustrationType => {
-    const w = word.toLowerCase();
-    if (w.includes('домбыра')) return 'dombra';
-    if (w.includes('киіз үй')) return 'yurt';
-    if (w.includes('түйе')) return 'camel';
-    if (w.includes('қарбыз')) return 'watermelon';
-    if (w.includes('бүркіт')) return 'eagle';
-    if (w.includes('алтын адам')) return 'golden_man';
-    if (w.includes('қазан')) return 'qazan';
-    if (w.includes('кітап') || w.includes('кітапхана') || w.includes('мектеп') || w.includes('мұғалім') || w.includes('оқушы')) return 'book';
-    if (w.includes('мысық') || w.includes('ит') || w.includes('түлкі') || w.includes('жылқы') || w.includes('қыран')) return 'animals';
-    return 'children';
+  // Helper to map every single word to a Nano Banana pre-generated illustration
+  const getCrocIllustrationUrl = (word: string): string => {
+    const w = word.trim().toLowerCase();
+    
+    if (w.includes('домбыра')) return '/dombra_kazakh.png';
+    if (w.includes('киіз үй') || w.includes('ту') || w.includes('тау')) return '/yurt_kazakh.png';
+    if (w.includes('түйе')) return '/camel_kazakh.png';
+    if (w.includes('қарбыз') || w.includes('алма')) return '/watermelon_kazakh.png';
+    if (w.includes('бүркіт') || w.includes('қыран')) return '/eagle_kazakh.png';
+    if (w.includes('алтын адам') || w.includes('батыр') || w.includes('қазақстан')) return '/golden_man_kazakh.png';
+    if (w.includes('қазан')) return '/qazan_kazakh.png';
+    
+    if (
+      w.includes('кітап') || 
+      w.includes('кітапхана') || 
+      w.includes('мектеп') || 
+      w.includes('мұғалім') || 
+      w.includes('оқушы')
+    ) {
+      return '/book_kazakh.png';
+    }
+    
+    if (
+      w.includes('мысық') || 
+      w.includes('ит') || 
+      w.includes('түлкі') || 
+      w.includes('жылқы') || 
+      w.includes('қарлығаш')
+    ) {
+      return '/animals_kazakh.png';
+    }
+    
+    if (w.includes('достық')) return '/greet_kazakh.png';
+    if (w.includes('күн') || w.includes('теңіз') || w.includes('өзен') || w.includes('кемпірқосақ')) return '/summer_kazakh.png';
+    if (w.includes('ай') || w.includes('бұлт') || w.includes('арман')) return '/mood_kazakh.png';
+    if (w.includes('ғарыш') || w.includes('компьютер') || w.includes('телефон') || w.includes('қалам')) return '/cartoon_kazakh.png';
+    
+    return '/jumping_kazakh.png';
   };
 
-  const illustrationType = getIllustrationType(crocWord);
+  const imageUrl = getCrocIllustrationUrl(crocWord);
 
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10 select-none">
@@ -61,7 +85,11 @@ export const GameOne: React.FC = () => {
               >
                 {/* Custom Illustration */}
                 <div className="w-28 h-28 md:w-36 md:h-36 bg-slate-900 border border-slate-850 rounded-xl flex items-center justify-center p-2 shadow-md">
-                  <Illustration type={illustrationType} className="w-full h-full object-contain filter drop-shadow-md" />
+                  <img 
+                    src={imageUrl} 
+                    alt={crocWord} 
+                    className="w-full h-full object-contain rounded-lg filter grayscale brightness-125 contrast-75 hover:grayscale-0 transition-all duration-300"
+                  />
                 </div>
                 
                 {/* Active word string */}
