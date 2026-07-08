@@ -9,6 +9,7 @@ import { Timer } from '../components/Timer';
 import { GameOne } from '../components/GameOne';
 import { GameTwo } from '../components/GameTwo';
 import { GameThree } from '../components/GameThree';
+import { WinnerScreen } from '../components/WinnerScreen';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Palette, BookOpen, Layers } from 'lucide-react';
 
@@ -107,6 +108,19 @@ export default function Home() {
               <div className="lg:sticky lg:top-8 flex flex-col items-center gap-4 flex-shrink-0 w-full max-w-[280px]">
                 <Timer />
               </div>
+            </motion.div>
+          )}
+
+          {activeScreen === 'winner' && (
+            <motion.div
+              key="winner-screen"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              transition={{ duration: 0.3 }}
+              className="w-full"
+            >
+              <WinnerScreen />
             </motion.div>
           )}
 

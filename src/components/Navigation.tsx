@@ -1,8 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGame, ScreenType } from '../context/GameContext';
-import { Volume2, VolumeX, Music, Home, Trophy, Gamepad2, Sun, Moon } from 'lucide-react';
+import { Volume2, VolumeX, Music, Home, Trophy, Gamepad2, Sun, Moon, Maximize2, Minimize2 } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const { 
@@ -18,6 +18,23 @@ export const Header: React.FC = () => {
 
   const handleNavClick = (screen: ScreenType) => {
     setActiveScreen(screen);
+  };
+
+  // Fullscreen state
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    const onChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onChange);
+    return () => document.removeEventListener('fullscreenchange', onChange);
+  }, []);
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } else {
+      document.exitFullscreen();
+    }
   };
 
   const navItems = [
@@ -62,6 +79,18 @@ export const Header: React.FC = () => {
 
       {/* Sound & Settings controls */}
       <div className="flex items-center gap-2">
+        {/* Fullscreen toggle */}
+        <button
+          onClick={toggleFullscreen}
+          className="p-2.5 rounded-xl border transition-all active:scale-95 bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-850 dark:text-slate-500 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800"
+          aria-label="Толық экран"
+          title={isFullscreen ? 'Толық экраннан шығу' : 'Толық экран'}
+        >
+          {isFullscreen
+            ? <Minimize2 className="w-5 h-5 stroke-[2.5px]" />
+            : <Maximize2 className="w-5 h-5 stroke-[2.5px]" />}
+        </button>
+
         {/* Toggle Theme */}
         <button
           onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}

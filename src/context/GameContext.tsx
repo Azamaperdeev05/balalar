@@ -4,7 +4,7 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import { soundManager } from '../utils/SoundManager';
 import confetti from 'canvas-confetti';
 
-export type ScreenType = 'welcome' | 'games' | 'scoreboard';
+export type ScreenType = 'welcome' | 'games' | 'scoreboard' | 'winner';
 
 export interface ProverbChallenge {
   scrambled: string[];
@@ -85,13 +85,19 @@ interface GameContextProps {
   scores: { team1: number; team2: number; team3: number };
   addScore: (team: 'team1' | 'team2' | 'team3', amount: number) => void;
   resetScores: () => void;
+
+  // Team names
+  teamNames: { team1: string; team2: string; team3: string };
+  setTeamName: (team: 'team1' | 'team2' | 'team3', name: string) => void;
   
   // Timer state
   timeLeft: number;
   timerActive: boolean;
+  timerDuration: 60 | 90 | 120;
+  setTimerDuration: (duration: 60 | 90 | 120) => void;
   startTimer: () => void;
   pauseTimer: () => void;
-  resetTimer: () => void;
+  resetTimer: (autoStart?: boolean) => void;
   
   // Game 1 state: Crocodile
   crocWord: string;
@@ -126,8 +132,23 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [activeScreen, setActiveScreenState] = useState<ScreenType>('welcome');
   const [activeGameIndex, setActiveGameIndex] = useState<number>(0);
   
+  // Team names
+  const [teamNames, setTeamNamesState] = useState({ team1: 'Команда 1', team2: 'Команда 2', team3: 'Команда 3' });
+  const setTeamName = (team: 'team1' | 'team2' | 'team3', name: string) => {
+    setTeamNamesState(prev => ({ ...prev, [team]: name || prev[team] }));
+  };
+
   // Scoreboard
   const [scores, setScores] = useState({ team1: 0, team2: 0, team3: 0 });
+  
+  // Timer duration
+  const [timerDuration, setTimerDurationState] = useState<60 | 90 | 120>(120);
+  const setTimerDuration = (duration: 60 | 90 | 120) => {
+    soundManager.playPop();
+    setTimerDurationState(duration);
+    setTimeLeft(duration);
+    setTimerActive(false);
+  };
   
   // Timer
   const [timeLeft, setTimeLeft] = useState<number>(120);
@@ -148,7 +169,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const resetTimer = (autoStart = false) => {
     soundManager.playPop();
     setTimerActive(autoStart);
-    setTimeLeft(120);
+    setTimeLeft(timerDuration);
   };
   
   // Game state trackers
@@ -283,7 +304,8 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     soundManager.playPop();
     setCrocWordIndex((prev) => (prev + 1) % CROCODILE_WORDS.length);
     setIsWordVisible(false);
-    resetTimer(false); // Reset to 120s but don't start until word is revealed
+    resetTimer(false);
+    setTimeLeft(timerDuration);
   };
 
   // Word Search Actions
@@ -324,8 +346,12 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         scores,
         addScore,
         resetScores,
+        teamNames,
+        setTeamName,
         timeLeft,
         timerActive,
+        timerDuration,
+        setTimerDuration,
         startTimer,
         pauseTimer,
         resetTimer,
