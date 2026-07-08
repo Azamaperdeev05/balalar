@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { useGame } from '../context/GameContext';
-import { Volume2, VolumeX, Music, Home, Trophy, Gamepad2, Settings } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { useGame, ScreenType } from '../context/GameContext';
+import { Volume2, VolumeX, Music, Home, Trophy, Gamepad2 } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const { 
@@ -15,7 +14,7 @@ export const Header: React.FC = () => {
     setMusicTheme
   } = useGame();
 
-  const handleNavClick = (screen: any) => {
+  const handleNavClick = (screen: ScreenType) => {
     setActiveScreen(screen);
   };
 
@@ -45,7 +44,7 @@ export const Header: React.FC = () => {
           return (
             <button
               key={item.id}
-              onClick={() => handleNavClick(item.id as any)}
+              onClick={() => handleNavClick(item.id as ScreenType)}
               className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 rounded-xl text-sm md:text-base font-black font-display tracking-wide transition-all ${
                 isActive 
                   ? 'bg-purple-600 text-white shadow-playful border-2 border-purple-950' 
@@ -120,7 +119,7 @@ export const Footer: React.FC = () => {
   return (
     <footer className="w-full bg-white border-t-4 border-purple-950 py-3 text-center z-40 relative">
       <span className="text-base md:text-lg font-black font-display tracking-wider text-purple-950 animate-pulse-slow block">
-        ✨ \"Жақсы ойын — жақсы көңіл күй.\" ✨
+        ✨ &quot;Жақсы ойын — жақсы көңіл күй.&quot; ✨
       </span>
     </footer>
   );

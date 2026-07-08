@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useGame, getScrambledProverb } from '../context/GameContext';
+import { useGame } from '../context/GameContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, SkipForward, CheckCircle2, RotateCcw } from 'lucide-react';
 import { soundManager } from '../utils/SoundManager';
@@ -13,6 +13,14 @@ export const GameThree: React.FC = () => {
   // Local state for dragging & reordering
   const [placedWords, setPlacedWords] = useState<string[]>([]);
   const [availableWords, setAvailableWords] = useState<string[]>([]);
+  const [prevChallenge, setPrevChallenge] = useState(proverbChallenge);
+
+  // Reset local state in render when challenge changes to avoid cascading effect renders
+  if (proverbChallenge !== prevChallenge) {
+    setPlacedWords([]);
+    setAvailableWords([...proverbChallenge.scrambled]);
+    setPrevChallenge(proverbChallenge);
+  }
 
   // Get clean correct words for comparison
   const getCleanWords = (text: string) => {
@@ -20,12 +28,6 @@ export const GameThree: React.FC = () => {
   };
 
   const correctWords = getCleanWords(proverbChallenge.correct);
-
-  // Initialize words when challenge changes
-  useEffect(() => {
-    setPlacedWords([]);
-    setAvailableWords([...proverbChallenge.scrambled]);
-  }, [proverbChallenge]);
 
   // Clean word helper for matching
   const cleanWord = (w: string) => {
@@ -49,7 +51,7 @@ export const GameThree: React.FC = () => {
         });
       }
     }
-  }, [placedWords, correctWords]);
+  }, [placedWords, correctWords, setProverbStatus]);
 
   // Click-to-place actions
   const handleWordClick = (word: string, index: number, isPlaced: boolean) => {
@@ -178,7 +180,7 @@ export const GameThree: React.FC = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
                 draggable={proverbStatus !== 'success'}
-                onDragStart={(e: any) => handleDragStart(e, word, idx, 'placed')}
+                onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, word, idx, 'placed')}
                 onClick={() => handleWordClick(word, idx, true)}
                 className={`px-5 py-3 rounded-2xl border-3 border-purple-950 font-black font-display text-lg md:text-xl shadow-playful cursor-pointer select-none transition-transform active:scale-95 ${
                   proverbStatus === 'success'
@@ -222,7 +224,7 @@ export const GameThree: React.FC = () => {
                   animate={{ scale: 1, opacity: 1 }}
                   exit={{ scale: 0.8, opacity: 0 }}
                   draggable
-                  onDragStart={(e: any) => handleDragStart(e, word, idx, 'available')}
+                  onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, word, idx, 'available')}
                   onClick={() => handleWordClick(word, idx, false)}
                   className="px-5 py-3 bg-white hover:bg-purple-100 text-purple-950 rounded-2xl border-3 border-purple-950 font-black font-display text-lg md:text-xl shadow-playful cursor-pointer select-none transition-all hover:scale-105 active:scale-95"
                 >

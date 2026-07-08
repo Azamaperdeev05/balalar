@@ -4,13 +4,13 @@ import React from 'react';
 import { useGame } from '../context/GameContext';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Palette, Eye, EyeOff, SkipForward } from 'lucide-react';
-import { Illustration } from './Illustration';
+import { Illustration, IllustrationType } from './Illustration';
 
 export const GameOne: React.FC = () => {
   const { crocWord, isWordVisible, toggleWordVisibility, nextCrocWord } = useGame();
 
   // Helper to resolve custom illustrations for the Crocodile words
-  const getIllustrationType = (word: string): any => {
+  const getIllustrationType = (word: string): IllustrationType => {
     const w = word.toLowerCase();
     if (w.includes('домбыра')) return 'dombra';
     if (w.includes('киіз үй')) return 'yurt';

@@ -1,7 +1,6 @@
 import React from 'react';
 
-interface IllustrationProps {
-  type: 
+export type IllustrationType = 
     | 'children' 
     | 'clapping' 
     | 'jumping' 
@@ -36,6 +35,9 @@ interface IllustrationProps {
     | 'eagle'
     | 'golden_man'
     | 'qazan';
+
+interface IllustrationProps {
+  type: IllustrationType;
   className?: string;
 }
 

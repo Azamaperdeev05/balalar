@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useGame } from '../context/GameContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { BookOpen, SkipForward } from 'lucide-react';
 import { Illustration } from './Illustration';
 

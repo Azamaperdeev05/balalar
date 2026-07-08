@@ -124,12 +124,18 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
   // Game state trackers
-  const [crocWord, setCrocWord] = useState<string>('');
+  const [crocWord, setCrocWord] = useState<string>(() => {
+    const randomIndex = Math.floor(Math.random() * CROCODILE_WORDS.length);
+    return CROCODILE_WORDS[randomIndex];
+  });
   const [isWordVisible, setIsWordVisible] = useState<boolean>(false);
   
-  const [searchTask, setSearchTask] = useState<string>('');
+  const [searchTask, setSearchTask] = useState<string>(() => {
+    const randomIndex = Math.floor(Math.random() * WORD_SEARCH_TASKS.length);
+    return WORD_SEARCH_TASKS[randomIndex];
+  });
   
-  const [proverbChallenge, setProverbChallenge] = useState<ProverbChallenge>({ scrambled: [], correct: '' });
+  const [proverbChallenge, setProverbChallenge] = useState<ProverbChallenge>(() => getScrambledProverb(PROVERBS[0]));
   const [proverbStatus, setProverbStatus] = useState<'playing' | 'success'>('playing');
   const [proverbIndex, setProverbIndex] = useState<number>(0);
   
@@ -160,18 +166,6 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     };
     window.addEventListener('click', handleUnlock);
     return () => window.removeEventListener('click', handleUnlock);
-  }, []);
-
-  // Set initial game states
-  useEffect(() => {
-    nextCrocWord();
-    nextSearchTask();
-    
-    // Pick the first proverb challenge
-    const challenge = getScrambledProverb(PROVERBS[0]);
-    setProverbChallenge(challenge);
-    setProverbIndex(0);
-    setProverbStatus('playing');
   }, []);
 
   // Timer Tick implementation

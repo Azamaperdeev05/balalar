@@ -12,7 +12,7 @@ export const Scoreboard: React.FC = () => {
   const maxScore = Math.max(scores.team1, scores.team2, scores.team3);
   const showCup = maxScore > 0;
 
-  const teams = [
+  const teams: { id: 'team1' | 'team2' | 'team3'; label: string; score: number; bgColor: string; emoji: string }[] = [
     { id: 'team1', label: 'Команда 1', score: scores.team1, bgColor: 'from-blue-400 to-indigo-600', emoji: '🦁' },
     { id: 'team2', label: 'Команда 2', score: scores.team2, bgColor: 'from-pink-400 to-rose-600', emoji: '🦊' },
     { id: 'team3', label: 'Команда 3', score: scores.team3, bgColor: 'from-emerald-400 to-teal-600', emoji: '🐼' }
@@ -91,7 +91,7 @@ export const Scoreboard: React.FC = () => {
                 {[1, 2, 3].map((amount) => (
                   <button
                     key={amount}
-                    onClick={() => addScore(team.id as any, amount)}
+                    onClick={() => addScore(team.id, amount)}
                     className="flex-1 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-2xl border-4 border-purple-950 font-black font-display text-lg md:text-xl shadow-playful hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-0.5"
                   >
                     <Plus className="w-4 h-4 stroke-[4px]" />

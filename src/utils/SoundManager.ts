@@ -4,7 +4,7 @@
 class SoundManager {
   private ctx: AudioContext | null = null;
   private enabled: boolean = true;
-  private musicInterval: any = null;
+  private musicInterval: number | NodeJS.Timeout | null = null;
   private musicStep: number = 0;
   private isMusicPlaying: boolean = false;
 
@@ -14,7 +14,7 @@ class SoundManager {
 
   private initContext() {
     if (!this.ctx) {
-      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      const AudioCtx = window.AudioContext || (window as Window & typeof globalThis & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
       if (AudioCtx) {
         this.ctx = new AudioCtx();
       }

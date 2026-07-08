@@ -4,12 +4,20 @@ import React from 'react';
 import { useGame } from '../context/GameContext';
 import { motion } from 'framer-motion';
 import { Palette, BookOpen, Layers, ArrowRight } from 'lucide-react';
-import { Illustration } from './Illustration';
+import { Illustration, IllustrationType } from './Illustration';
 
 export const WelcomeScreen: React.FC = () => {
   const { setActiveScreen, setActiveGameIndex } = useGame();
 
-  const gameCards = [
+  const gameCards: {
+    index: number;
+    title: string;
+    description: string;
+    icon: React.ReactNode;
+    illustration: IllustrationType;
+    bgColor: string;
+    borderCol: string;
+  }[] = [
     {
       index: 0,
       title: 'Крокодил 🎨',
@@ -94,7 +102,7 @@ export const WelcomeScreen: React.FC = () => {
           >
             {/* Visual Frame */}
             <div className={`w-32 h-32 rounded-3xl bg-gradient-to-br ${card.bgColor} border-4 border-purple-950 flex items-center justify-center p-2 shadow-md relative`}>
-              <Illustration type={card.illustration as any} className="w-full h-full object-contain" />
+              <Illustration type={card.illustration} className="w-full h-full object-contain" />
               <div className="absolute -top-3 -left-3 w-10 h-10 bg-white border-2 border-purple-950 rounded-xl flex items-center justify-center shadow">
                 {card.icon}
               </div>
