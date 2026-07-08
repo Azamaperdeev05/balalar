@@ -49,8 +49,11 @@ export const PROVERBS = [
 
 // Helper to scramble a proverb into individual words
 export const getScrambledProverb = (proverb: string): ProverbChallenge => {
-  // Strip dots, dashes, commas to isolate clean words for reordering
-  const cleanProverb = proverb.replace(/[.—]/g, '').trim();
+  // Strip dots, all dashes (standard -, en-dash –, em-dash —) to isolate clean words for reordering
+  const cleanProverb = proverb
+    .replace(/[.—–-]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
   const words = cleanProverb.split(/\s+/).filter(Boolean);
   
   // Scramble the array
