@@ -25,30 +25,30 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className="w-full bg-white border-b-4 border-purple-950 px-4 md:px-8 py-3 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 z-40 relative shadow-md">
+    <header className="w-full bg-slate-900/60 backdrop-blur-xl border-b border-white/10 px-4 md:px-8 py-3.5 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 z-40 relative shadow-2xl">
       {/* Brand logo */}
       <div 
         onClick={() => handleNavClick('welcome')}
         className="flex items-center gap-2 cursor-pointer group select-none"
       >
         <span className="text-3xl md:text-4xl animate-bounce-gentle">📚</span>
-        <span className="text-2xl md:text-3xl font-black font-display tracking-wider text-purple-950 group-hover:text-purple-600 transition-colors">
+        <span className="text-2xl md:text-3xl font-black font-display tracking-wider text-gaming-gradient group-hover:opacity-80 transition-opacity">
           BOOK GAMES
         </span>
       </div>
 
       {/* Navigation menu */}
-      <nav className="flex items-center gap-1 md:gap-3 bg-purple-50 p-1.5 rounded-2xl border-2 border-purple-950/20">
+      <nav className="flex items-center gap-1 md:gap-2 bg-slate-950/60 p-1 rounded-2xl border border-white/10">
         {navItems.map((item) => {
           const isActive = activeScreen === item.id;
           return (
             <button
               key={item.id}
               onClick={() => handleNavClick(item.id as ScreenType)}
-              className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2 rounded-xl text-sm md:text-base font-black font-display tracking-wide transition-all ${
+              className={`flex items-center gap-1.5 md:gap-2 px-3 md:px-5 py-2.5 rounded-xl text-sm md:text-base font-black font-display tracking-wide transition-all ${
                 isActive 
-                  ? 'bg-purple-600 text-white shadow-playful border-2 border-purple-950' 
-                  : 'text-purple-950 hover:bg-purple-100 hover:scale-105'
+                  ? 'bg-indigo-600 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)]' 
+                  : 'text-slate-400 hover:text-white hover:bg-white/5 hover:scale-105'
               }`}
             >
               {item.icon}
@@ -63,10 +63,10 @@ export const Header: React.FC = () => {
         {/* Toggle Sound */}
         <button
           onClick={() => setAudioEnabled(!audioEnabled)}
-          className={`p-2.5 rounded-xl border-2 border-purple-950 shadow-playful transition-transform active:scale-95 ${
+          className={`p-2.5 rounded-xl border transition-all active:scale-95 ${
             audioEnabled 
-              ? 'bg-yellow-400 text-purple-950 hover:bg-yellow-300' 
-              : 'bg-gray-200 text-gray-500 border-gray-400 shadow-none'
+              ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.4)] hover:bg-indigo-500' 
+              : 'bg-slate-800 text-slate-500 border-white/5 shadow-none'
           }`}
           aria-label="Дыбысты қосу/өшіру"
           title={audioEnabled ? "Дыбысты өшіру" : "Дыбысты қосу"}
@@ -78,7 +78,7 @@ export const Header: React.FC = () => {
         {audioEnabled && (
           <div className="relative group">
             <button 
-              className="p-2.5 rounded-xl bg-purple-100 text-purple-950 border-2 border-purple-950 shadow-playful flex items-center gap-1.5 hover:bg-purple-200 transition-colors"
+              className="p-2.5 rounded-xl bg-slate-800 text-slate-200 border border-white/10 flex items-center gap-1.5 hover:bg-slate-700 transition-colors shadow-md"
               title="Музыка түрін таңдау"
             >
               <Music className="w-5 h-5 stroke-[2.5px]" />
@@ -88,22 +88,22 @@ export const Header: React.FC = () => {
             </button>
             
             {/* Dropdown Menu */}
-            <div className="absolute right-0 mt-2 w-36 bg-white border-2 border-purple-950 rounded-2xl shadow-xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="absolute right-0 mt-2 w-36 bg-slate-900 border border-white/10 rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <button
                 onClick={() => setMusicTheme('cheerful')}
-                className={`w-full text-left px-4 py-2 text-xs font-black font-display hover:bg-purple-50 ${musicTheme === 'cheerful' ? 'bg-purple-100 text-purple-900' : 'text-purple-950'}`}
+                className={`w-full text-left px-4 py-2.5 text-xs font-black font-display hover:bg-white/5 ${musicTheme === 'cheerful' ? 'bg-indigo-600 text-white' : 'text-slate-300'}`}
               >
                 🥳 Көңілді
               </button>
               <button
                 onClick={() => setMusicTheme('calm')}
-                className={`w-full text-left px-4 py-2 text-xs font-black font-display hover:bg-purple-50 ${musicTheme === 'calm' ? 'bg-purple-100 text-purple-900' : 'text-purple-950'}`}
+                className={`w-full text-left px-4 py-2.5 text-xs font-black font-display hover:bg-white/5 ${musicTheme === 'calm' ? 'bg-indigo-600 text-white' : 'text-slate-300'}`}
               >
                 🍃 Қоңыр
               </button>
               <button
                 onClick={() => setMusicTheme('retro')}
-                className={`w-full text-left px-4 py-2 text-xs font-black font-display hover:bg-purple-50 ${musicTheme === 'retro' ? 'bg-purple-100 text-purple-900' : 'text-purple-950'}`}
+                className={`w-full text-left px-4 py-2.5 text-xs font-black font-display hover:bg-white/5 ${musicTheme === 'retro' ? 'bg-indigo-600 text-white' : 'text-slate-300'}`}
               >
                 👾 Ретро
               </button>
@@ -117,8 +117,8 @@ export const Header: React.FC = () => {
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-white border-t-4 border-purple-950 py-3 text-center z-40 relative">
-      <span className="text-base md:text-lg font-black font-display tracking-wider text-purple-950 animate-pulse-slow block">
+    <footer className="w-full bg-slate-950 border-t border-white/5 py-4 text-center z-40 relative">
+      <span className="text-base font-black font-display tracking-wider text-slate-500 block">
         ✨ &quot;Жақсы ойын — жақсы көңіл күй.&quot; ✨
       </span>
     </footer>

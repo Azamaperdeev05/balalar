@@ -17,27 +17,26 @@ export default function Home() {
 
   const gameTabs = [
     { index: 0, label: 'Крокодил', icon: <Palette className="w-5 h-5" />, color: 'from-amber-400 to-orange-500' },
-    { index: 1, label: 'Сөзді тауып көр', icon: <BookOpen className="w-5 h-5" />, color: 'from-blue-400 to-indigo-600' },
+    { index: 1, label: 'Сөзді тауып көр', icon: <BookOpen className="w-5 h-5" />, color: 'from-indigo-400 to-indigo-600' },
     { index: 2, label: 'Мақалды құрастыр', icon: <Layers className="w-5 h-5" />, color: 'from-emerald-400 to-teal-600' }
   ];
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-gradient-to-b from-purple-50 via-pink-50/20 to-purple-100/40 bg-grid-playful relative overflow-x-hidden">
+    <div className="flex-1 flex flex-col h-full bg-zinc-950 bg-grid-gaming relative overflow-x-hidden">
       
       {/* Navigation Header */}
       <Header />
 
       {/* Main Presentation Work Space */}
-      <main className="flex-1 w-full max-w-7xl mx-auto flex flex-col items-center justify-center py-6 px-4 md:px-8 z-10 relative">
+      <main className="flex-1 w-full max-w-7xl mx-auto px-4 md:px-8 py-6 md:py-10 flex flex-col items-center relative z-20">
         <AnimatePresence mode="wait">
           {activeScreen === 'welcome' && (
             <motion.div
               key="welcome-screen"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.25 }}
-              className="w-full"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              className="w-full flex items-center justify-center py-6"
             >
               <WelcomeScreen />
             </motion.div>
@@ -46,11 +45,10 @@ export default function Home() {
           {activeScreen === 'scoreboard' && (
             <motion.div
               key="scoreboard-screen"
-              initial={{ opacity: 0, scale: 0.98 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.25 }}
-              className="w-full"
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -15 }}
+              className="w-full flex items-center justify-center py-6"
             >
               <Scoreboard />
             </motion.div>
@@ -67,17 +65,17 @@ export default function Home() {
               {/* Left Column: Game Selector and Active Game Card */}
               <div className="flex-1 flex flex-col items-center gap-6 w-full">
                 {/* Game Tabs */}
-                <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-purple-100/50 p-2 rounded-[2rem] border-4 border-purple-950 w-full max-w-2xl shadow-md">
+                <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 bg-zinc-900/60 p-1.5 rounded-2xl border border-zinc-800 w-full max-w-2xl shadow-2xl">
                   {gameTabs.map((tab) => {
                     const isActive = activeGameIndex === tab.index;
                     return (
                       <button
                         key={tab.index}
                         onClick={() => setActiveGameIndex(tab.index)}
-                        className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 px-4 py-3 rounded-2xl font-black font-display text-sm md:text-base border-3 transition-all ${
+                        className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 px-4 py-3 rounded-xl font-bold font-display text-sm md:text-base border transition-all ${
                           isActive
-                            ? 'bg-purple-600 text-white border-purple-950 shadow-playful scale-105'
-                            : 'bg-white text-purple-950 border-purple-950/20 hover:bg-purple-50 hover:scale-102'
+                            ? 'bg-indigo-600 text-white border-indigo-500 shadow-neon-accent scale-102'
+                            : 'bg-zinc-950 text-zinc-400 border-zinc-800/40 hover:bg-zinc-800 hover:text-white'
                         }`}
                       >
                         {tab.icon}
@@ -108,9 +106,9 @@ export default function Home() {
       <Footer />
 
       {/* Floating background decorative bubbles */}
-      <div className="absolute top-1/4 left-10 w-32 h-32 bg-indigo-200/10 rounded-full blur-2xl pointer-events-none animate-float" />
-      <div className="absolute bottom-1/4 right-10 w-44 h-44 bg-pink-200/10 rounded-full blur-3xl pointer-events-none animate-float-reverse" />
-      <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-yellow-200/10 rounded-full blur-xl pointer-events-none animate-float-slow" />
+      <div className="absolute top-1/4 left-10 w-32 h-32 bg-indigo-500/5 rounded-full blur-3xl pointer-events-none animate-float" />
+      <div className="absolute bottom-1/4 right-10 w-44 h-44 bg-indigo-600/3 rounded-full blur-3xl pointer-events-none animate-float-reverse" />
+      <div className="absolute bottom-10 left-1/3 w-28 h-28 bg-white/3 rounded-full blur-2xl pointer-events-none animate-float-slow" />
       
     </div>
   );

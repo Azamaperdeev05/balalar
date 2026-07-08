@@ -1,19 +1,29 @@
-'use client';
-
 import React from 'react';
 import { useGame } from '../context/GameContext';
 import { motion } from 'framer-motion';
 import { BookOpen, SkipForward } from 'lucide-react';
-import { Illustration } from './Illustration';
+import { Illustration, IllustrationType } from './Illustration';
 
 export const GameTwo: React.FC = () => {
   const { searchTask, nextSearchTask } = useGame();
 
+  // Helper to resolve the correct illustration for active search tasks
+  const getIllustrationType = (task: string): IllustrationType => {
+    const t = task.toLowerCase();
+    if (t.includes('қызыл')) return 'red_search';
+    if (t.includes('дөңгелек')) return 'round_search';
+    if (t.includes('киім') || t.includes('әріп')) return 'letter_search';
+    if (t.includes('саусақ')) return 'fingers_count';
+    return 'book';
+  };
+
+  const illustrationType = getIllustrationType(searchTask);
+
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10">
       
-      <span className="text-sm md:text-base font-black bg-purple-600 border-4 border-purple-950 text-white px-5 py-2 rounded-full shadow-md tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
-        <BookOpen className="w-5 h-5 stroke-[3px]" />
+      <span className="text-sm md:text-base font-bold bg-indigo-600 border border-indigo-500 text-white px-5 py-2.5 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.4)] tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
+        <BookOpen className="w-5 h-5 stroke-[2.5px]" />
         Сөзді тауып көр 📖
       </span>
 
@@ -23,22 +33,22 @@ export const GameTwo: React.FC = () => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 100, damping: 12 }}
-        className="w-full bg-white border-8 border-purple-950 text-purple-950 rounded-[3rem] p-6 md:p-10 flex flex-col items-center justify-center shadow-playful relative overflow-hidden"
+        className="w-full bg-zinc-900/40 backdrop-blur-xl border border-zinc-800 text-white rounded-2xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
       >
         {/* Rules explanation */}
-        <p className="text-sm md:text-base font-bold text-purple-900/60 max-w-xl text-center mb-6 leading-relaxed">
-          Әр топқа бірдей кітап беріледі. Төмендегі тапсырманы кітап беттерінен мүмкіндігінше ең бірінші болып тауып көрсеткен команда ұпай алады!
+        <p className="text-xs md:text-sm font-semibold text-zinc-400 max-w-xl text-center mb-6 leading-relaxed">
+          Әр топқа бірдей кітап беріледі. Төмендегі тапсырманы кітап беттерінен немесе бөлмеден мүмкіндігінше ең бірінші болып тауып көрсеткен команда ұпай алады!
         </p>
 
         {/* Task display area */}
-        <div className="w-full max-w-xl bg-purple-50 border-4 border-purple-950/20 rounded-[2rem] p-6 md:p-8 flex flex-col items-center gap-6 mb-6 shadow-inner min-h-[220px] justify-center">
+        <div className="w-full max-w-xl bg-zinc-950/60 border border-zinc-800/80 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-6 mb-6 shadow-inner min-h-[220px] justify-center">
           {/* Custom Illustration */}
-          <div className="w-28 h-28 md:w-36 md:h-36 bg-white border-4 border-purple-950/15 rounded-2xl flex items-center justify-center p-2 shadow-sm">
-            <Illustration type="book" className="w-full h-full object-contain" />
+          <div className="w-28 h-28 md:w-36 md:h-36 bg-zinc-900 border border-zinc-800 rounded-xl flex items-center justify-center p-2.5 shadow-md">
+            <Illustration type={illustrationType} className="w-full h-full object-contain filter grayscale brightness-125 group-hover:grayscale-0 transition-all duration-300" />
           </div>
 
           {/* Active task text */}
-          <h2 className="text-2xl md:text-4xl font-black font-display text-purple-950 text-center tracking-wide leading-snug">
+          <h2 className="text-xl md:text-2xl font-black font-display text-white text-center tracking-wide leading-snug">
             {searchTask}
           </h2>
         </div>
@@ -47,9 +57,9 @@ export const GameTwo: React.FC = () => {
         <div className="w-full max-w-xs">
           <button
             onClick={nextSearchTask}
-            className="w-full py-4 px-6 bg-indigo-600 hover:bg-indigo-500 text-white font-black font-display text-lg md:text-xl rounded-2xl border-4 border-purple-950 shadow-playful hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3 px-6 bg-indigo-600 hover:bg-indigo-500 border border-indigo-500/50 text-white font-bold font-display text-base rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
           >
-            <SkipForward className="w-6 h-6 stroke-[3px]" />
+            <SkipForward className="w-5 h-5 stroke-[2.5px]" />
             <span>КЕЛЕСІ ТАПСЫРМА</span>
           </button>
         </div>

@@ -29,8 +29,8 @@ export const GameOne: React.FC = () => {
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10">
       
-      <span className="text-sm md:text-base font-black bg-purple-600 border-4 border-purple-950 text-white px-5 py-2 rounded-full shadow-md tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
-        <Palette className="w-5 h-5 stroke-[3px]" />
+      <span className="text-sm md:text-base font-black bg-indigo-600 border border-indigo-500 text-white px-5 py-2.5 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.4)] tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
+        <Palette className="w-5 h-5 stroke-[2.5px]" />
         Крокодил ойыны 🎨
       </span>
 
@@ -40,15 +40,15 @@ export const GameOne: React.FC = () => {
         initial={{ scale: 0.95, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 100, damping: 12 }}
-        className="w-full bg-white border-8 border-purple-950 text-purple-950 rounded-[3rem] p-6 md:p-10 flex flex-col items-center justify-center shadow-playful relative overflow-hidden"
+        className="w-full bg-slate-900/60 backdrop-blur-xl border border-white/10 text-white rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center shadow-2xl relative overflow-hidden"
       >
         {/* Rules explanation */}
-        <p className="text-sm md:text-base font-bold text-purple-900/60 max-w-xl text-center mb-6 leading-relaxed">
+        <p className="text-xs md:text-sm font-bold text-slate-400 max-w-xl text-center mb-6 leading-relaxed">
           Жүргізуші ойыншыға сөз жасырады. Ойыншы оны сөйлемей, тек қағазға сурет салу арқылы көрсетеді, ал командасы сөзді табуы керек.
         </p>
 
         {/* Word Display frame */}
-        <div className="w-full max-w-md bg-purple-50 border-4 border-purple-950/20 rounded-[2rem] p-6 md:p-8 flex flex-col items-center gap-4 mb-6 shadow-inner min-h-[220px] justify-center relative">
+        <div className="w-full max-w-md bg-slate-950/60 border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-4 mb-6 shadow-inner min-h-[220px] justify-center relative">
           
           <AnimatePresence mode="wait">
             {isWordVisible ? (
@@ -60,12 +60,12 @@ export const GameOne: React.FC = () => {
                 className="flex flex-col items-center gap-4 w-full"
               >
                 {/* Custom Illustration */}
-                <div className="w-28 h-28 md:w-36 md:h-36 bg-white border-4 border-purple-950/15 rounded-2xl flex items-center justify-center p-2 shadow-sm">
-                  <Illustration type={illustrationType} className="w-full h-full object-contain" />
+                <div className="w-28 h-28 md:w-36 md:h-36 bg-slate-900 border border-white/10 rounded-xl flex items-center justify-center p-2 shadow-md">
+                  <Illustration type={illustrationType} className="w-full h-full object-contain filter drop-shadow-md" />
                 </div>
                 
                 {/* Active word string */}
-                <h2 className="text-4xl md:text-6xl font-black font-display text-purple-950 tracking-wide text-center">
+                <h2 className="text-3xl md:text-4xl font-black font-display text-white tracking-wide text-center">
                   {crocWord}
                 </h2>
               </motion.div>
@@ -78,7 +78,7 @@ export const GameOne: React.FC = () => {
                 className="flex flex-col items-center gap-2"
               >
                 <div className="text-6xl md:text-7xl animate-pulse-slow">🤫</div>
-                <div className="text-lg md:text-xl font-black font-display text-purple-950/40 uppercase tracking-wider text-center mt-2">
+                <div className="text-sm md:text-base font-bold font-display text-slate-500 uppercase tracking-wider text-center mt-2">
                   Сөз жасырылды
                 </div>
               </motion.div>
@@ -91,20 +91,20 @@ export const GameOne: React.FC = () => {
           {/* Toggle word Visibility */}
           <button
             onClick={toggleWordVisibility}
-            className={`w-full py-4 px-6 font-black font-display text-lg md:text-xl rounded-2xl border-4 border-purple-950 shadow-playful hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 ${
+            className={`w-full py-3.5 px-6 font-extrabold font-display text-base rounded-xl border shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2 ${
               isWordVisible 
-                ? 'bg-yellow-400 text-purple-950 hover:bg-yellow-300' 
-                : 'bg-purple-600 text-white hover:bg-purple-500'
+                ? 'bg-amber-500 border-amber-500/50 text-slate-950 hover:bg-amber-400' 
+                : 'bg-indigo-600 border-indigo-500/50 text-white hover:bg-indigo-500'
             }`}
           >
             {isWordVisible ? (
               <>
-                <EyeOff className="w-6 h-6 stroke-[3px]" />
+                <EyeOff className="w-5 h-5 stroke-[2.5px]" />
                 <span>ЖАСЫРУ</span>
               </>
             ) : (
               <>
-                <Eye className="w-6 h-6 stroke-[3px]" />
+                <Eye className="w-5 h-5 stroke-[2.5px]" />
                 <span>СӨЗДІ КӨРСЕТУ</span>
               </>
             )}
@@ -113,9 +113,9 @@ export const GameOne: React.FC = () => {
           {/* Random Next word skip */}
           <button
             onClick={nextCrocWord}
-            className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-400 text-white font-black font-display text-lg md:text-xl rounded-2xl border-4 border-purple-950 shadow-playful hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+            className="w-full py-3.5 px-6 bg-gradient-to-r from-orange-500 to-amber-500 hover:opacity-95 border border-orange-500/50 text-white font-extrabold font-display text-base rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
           >
-            <SkipForward className="w-6 h-6 stroke-[3px]" />
+            <SkipForward className="w-5 h-5 stroke-[2.5px]" />
             <span>КЕЛЕСІ СӨЗ</span>
           </button>
         </div>
