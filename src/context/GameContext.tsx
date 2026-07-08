@@ -126,6 +126,23 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [timeLeft, setTimeLeft] = useState<number>(120);
   const [timerActive, setTimerActive] = useState<boolean>(false);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Timer actions defined early for screen switching triggers
+  const startTimer = () => {
+    soundManager.playPop();
+    setTimerActive(true);
+  };
+
+  const pauseTimer = () => {
+    soundManager.playPop();
+    setTimerActive(false);
+  };
+
+  const resetTimer = (autoStart = false) => {
+    soundManager.playPop();
+    setTimerActive(autoStart);
+    setTimeLeft(120);
+  };
   
   // Game state trackers
   const [crocWord, setCrocWord] = useState<string>(() => {
@@ -147,10 +164,13 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [audioEnabled, setAudioEnabled] = useState<boolean>(true);
   const [musicTheme, setMusicThemeState] = useState<'cheerful' | 'calm' | 'retro'>('cheerful');
 
-  // Trigger pop sound when navigation changes
+  // Trigger pop sound and auto-start timer when switching to game screen
   const setActiveScreen = (screen: ScreenType) => {
     soundManager.playPop();
     setActiveScreenState(screen);
+    if (screen === 'games') {
+      resetTimer(true);
+    }
   };
 
   // Sound initialization and activation on user interactions
@@ -223,23 +243,6 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setScores({ team1: 0, team2: 0, team3: 0 });
   };
 
-  // Timer actions
-  const startTimer = () => {
-    soundManager.playPop();
-    setTimerActive(true);
-  };
-
-  const pauseTimer = () => {
-    soundManager.playPop();
-    setTimerActive(false);
-  };
-
-  const resetTimer = () => {
-    soundManager.playPop();
-    setTimerActive(false);
-    setTimeLeft(120);
-  };
-
   // Crocodile Word Actions
   const toggleWordVisibility = () => {
     soundManager.playPop();
@@ -251,7 +254,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const randomIndex = Math.floor(Math.random() * CROCODILE_WORDS.length);
     setCrocWord(CROCODILE_WORDS[randomIndex]);
     setIsWordVisible(false);
-    resetTimer();
+    resetTimer(true);
   };
 
   // Word Search Actions
@@ -259,7 +262,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     soundManager.playPop();
     const randomIndex = Math.floor(Math.random() * WORD_SEARCH_TASKS.length);
     setSearchTask(WORD_SEARCH_TASKS[randomIndex]);
-    resetTimer();
+    resetTimer(true);
   };
 
   // Proverb Actions
@@ -270,7 +273,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     const challenge = getScrambledProverb(PROVERBS[nextIdx]);
     setProverbChallenge(challenge);
     setProverbStatus('playing');
-    resetTimer();
+    resetTimer(true);
   };
 
   const setMusicTheme = (theme: 'cheerful' | 'calm' | 'retro') => {
@@ -287,7 +290,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setActiveGameIndex: (idx) => {
           soundManager.playPop();
           setActiveGameIndex(idx);
-          resetTimer();
+          resetTimer(true);
         },
         scores,
         addScore,
