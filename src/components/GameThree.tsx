@@ -12,7 +12,7 @@ export const GameThree: React.FC = () => {
   
   // Local state for dragging & reordering
   const [placedWords, setPlacedWords] = useState<string[]>([]);
-  const [availableWords, setAvailableWords] = useState<string[]>([]);
+  const [availableWords, setAvailableWords] = useState<string[]>(() => [...proverbChallenge.scrambled]);
   const [prevChallenge, setPrevChallenge] = useState(proverbChallenge);
 
   // Reset local state in render when challenge changes to avoid cascading effect renders
