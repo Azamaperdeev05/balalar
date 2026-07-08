@@ -14,11 +14,13 @@ export const GameThree: React.FC = () => {
   const [placedWords, setPlacedWords] = useState<string[]>([]);
   const [availableWords, setAvailableWords] = useState<string[]>(() => [...proverbChallenge.scrambled]);
   const [prevChallenge, setPrevChallenge] = useState(proverbChallenge);
+  const [isError, setIsError] = useState<boolean>(false);
 
   // Reset local state in render when challenge changes to avoid cascading effect renders
   if (proverbChallenge !== prevChallenge) {
     setPlacedWords([]);
     setAvailableWords([...proverbChallenge.scrambled]);
+    setIsError(false);
     setPrevChallenge(proverbChallenge);
   }
 
@@ -32,6 +34,32 @@ export const GameThree: React.FC = () => {
   // Clean word helper for matching
   const cleanWord = (w: string) => {
     return w.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()?—–]/g, "").trim().toLowerCase();
+  };
+
+  // Synthesize a retro game buzzer/fail sound
+  const playFailSound = () => {
+    try {
+      const AudioCtx = window.AudioContext || (window as any).webkitAudioContext;
+      if (!AudioCtx) return;
+      const ctx = new AudioCtx();
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain);
+      gain.connect(ctx.destination);
+      
+      const now = ctx.currentTime;
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(180, now);
+      osc.frequency.linearRampToValueAtTime(70, now + 0.35);
+      
+      gain.gain.setValueAtTime(0.2, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+      
+      osc.start(now);
+      osc.stop(now + 0.4);
+    } catch (e) {
+      console.warn('Fail audio synthesis failed', e);
+    }
   };
 
   // Check if current placedWords list matches the correct proverb
@@ -49,13 +77,26 @@ export const GameThree: React.FC = () => {
           spread: 80,
           origin: { y: 0.55 }
         });
+      } else {
+        // Wrong order: trigger red glow, shake, buzzer sound
+        setIsError(true);
+        playFailSound();
+        
+        // Wait 1.2s, then shake back to normal and auto-reset/re-scramble words
+        const timer = setTimeout(() => {
+          setIsError(false);
+          setPlacedWords([]);
+          setAvailableWords([...proverbChallenge.scrambled]);
+        }, 1200);
+        
+        return () => clearTimeout(timer);
       }
     }
-  }, [placedWords, correctWords, setProverbStatus]);
+  }, [placedWords, correctWords, setProverbStatus, proverbChallenge]);
 
   // Click-to-place actions
   const handleWordClick = (word: string, index: number, isPlaced: boolean) => {
-    if (proverbStatus === 'success') return;
+    if (proverbStatus === 'success' || isError) return;
     soundManager.playPop();
 
     if (isPlaced) {
@@ -75,6 +116,7 @@ export const GameThree: React.FC = () => {
 
   // Reset current proverb attempt
   const handleResetAttempt = () => {
+    if (isError) return;
     soundManager.playPop();
     setPlacedWords([]);
     setAvailableWords([...proverbChallenge.scrambled]);
@@ -92,7 +134,7 @@ export const GameThree: React.FC = () => {
 
   const handleDropOnZone = (e: React.DragEvent) => {
     e.preventDefault();
-    if (proverbStatus === 'success') return;
+    if (proverbStatus === 'success' || isError) return;
 
     try {
       const dataStr = e.dataTransfer.getData('text/plain');
@@ -115,7 +157,7 @@ export const GameThree: React.FC = () => {
 
   const handleDropOnAvailableZone = (e: React.DragEvent) => {
     e.preventDefault();
-    if (proverbStatus === 'success') return;
+    if (proverbStatus === 'success' || isError) return;
 
     try {
       const dataStr = e.dataTransfer.getData('text/plain');
@@ -158,11 +200,17 @@ export const GameThree: React.FC = () => {
         </p>
 
         {/* Dropped / Answer Display Board */}
-        <div 
+        <motion.div 
           onDragOver={handleDragOver}
           onDrop={handleDropOnZone}
-          className={`w-full bg-slate-950/60 border border-dashed border-slate-850 rounded-2xl p-6 md:p-8 flex flex-wrap items-center justify-center gap-3 min-h-[140px] mb-6 shadow-inner transition-colors duration-300 ${
-            proverbStatus === 'success' ? 'border-emerald-500 bg-emerald-500/10' : ''
+          animate={isError ? { x: [-8, 8, -8, 8, -4, 4, 0] } : {}}
+          transition={{ duration: 0.5 }}
+          className={`w-full bg-slate-950/60 border border-dashed rounded-2xl p-6 md:p-8 flex flex-wrap items-center justify-center gap-3 min-h-[140px] mb-6 shadow-inner transition-colors duration-300 ${
+            proverbStatus === 'success' 
+              ? 'border-emerald-500 bg-emerald-500/10' 
+              : isError 
+                ? 'border-rose-500 bg-rose-500/10 shadow-[0_0_15px_rgba(244,63,94,0.15)]' 
+                : 'border-slate-850'
           }`}
         >
           {placedWords.length === 0 && (
@@ -178,20 +226,22 @@ export const GameThree: React.FC = () => {
                 initial={{ scale: 0.8, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.8, opacity: 0 }}
-                draggable={proverbStatus !== 'success'}
+                draggable={proverbStatus !== 'success' && !isError}
                 onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, word, idx, 'placed')}
                 onClick={() => handleWordClick(word, idx, true)}
                 className={`px-4 py-2.5 rounded-xl border font-bold font-display text-base cursor-pointer select-none transition-all active:scale-95 ${
                   proverbStatus === 'success'
                     ? 'bg-emerald-650 text-white border-emerald-550 shadow-none'
-                    : 'bg-slate-900 hover:bg-slate-850 border-slate-800 text-white'
+                    : isError
+                      ? 'bg-rose-950/80 border-rose-800 text-rose-200'
+                      : 'bg-slate-900 hover:bg-slate-850 border-slate-800 text-white'
                 }`}
               >
                 {word}
               </motion.div>
             ))}
           </AnimatePresence>
-        </div>
+        </motion.div>
 
         {/* Success message banner */}
         <AnimatePresence>
