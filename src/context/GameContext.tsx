@@ -119,7 +119,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [scores, setScores] = useState({ team1: 0, team2: 0, team3: 0 });
   
   // Timer
-  const [timeLeft, setTimeLeft] = useState<number>(60);
+  const [timeLeft, setTimeLeft] = useState<number>(120);
   const [timerActive, setTimerActive] = useState<boolean>(false);
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
   
@@ -239,7 +239,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const resetTimer = () => {
     soundManager.playPop();
     setTimerActive(false);
-    setTimeLeft(60);
+    setTimeLeft(120);
   };
 
   // Crocodile Word Actions

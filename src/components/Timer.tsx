@@ -19,11 +19,11 @@ export const Timer: React.FC = () => {
   let bgFillClass = 'bg-emerald-50';
   let glowClass = 'shadow-emerald-500/20';
 
-  if (timeLeft <= 10) {
+  if (timeLeft <= 20) {
     colorClass = 'stroke-red-500 text-red-500 animate-pulse';
     bgFillClass = 'bg-red-50';
     glowClass = 'shadow-red-500/40';
-  } else if (timeLeft <= 30) {
+  } else if (timeLeft <= 60) {
     colorClass = 'stroke-amber-400 text-amber-500';
     bgFillClass = 'bg-amber-50/55';
     glowClass = 'shadow-amber-500/20';
@@ -33,7 +33,7 @@ export const Timer: React.FC = () => {
   const radius = 60;
   const strokeWidth = 10;
   const circumference = 2 * Math.PI * radius;
-  const strokeDashoffset = circumference * (1 - timeLeft / 60);
+  const strokeDashoffset = circumference * (1 - timeLeft / 120);
 
   return (
     <div className="flex flex-col items-center gap-4 bg-white border-6 border-purple-950 p-6 rounded-[2.5rem] shadow-playful relative w-full max-w-[280px]">
