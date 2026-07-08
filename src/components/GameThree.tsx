@@ -181,8 +181,8 @@ export const GameThree: React.FC = () => {
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10 select-none">
       
-      <span className="text-xs md:text-sm font-semibold bg-slate-800 border border-slate-700 text-slate-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display flex items-center gap-2 flex-shrink-0">
-        <Layers className="w-5 h-5 stroke-[2.5px] text-indigo-400" />
+      <span className="text-xs md:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display flex items-center gap-2 flex-shrink-0 shadow-sm">
+        <Layers className="w-5 h-5 stroke-[2.5px] text-indigo-500 dark:text-indigo-400" />
         Мақалды құрастыр 🧩
       </span>
 
@@ -192,10 +192,10 @@ export const GameThree: React.FC = () => {
         initial={{ scale: 0.98, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 100, damping: 12 }}
-        className="w-full bg-slate-800/80 border border-slate-700/50 text-white rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
+        className="w-full bg-white/90 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
       >
         {/* Rules explanation */}
-        <p className="text-xs md:text-sm font-semibold text-slate-400 max-w-xl text-center mb-6 leading-relaxed">
+        <p className="text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 max-w-xl text-center mb-6 leading-relaxed">
           Төмендегі сөздерді сүйреп немесе ретімен басу арқылы мақал-мәтелді дұрыс құрастырыңдар!
         </p>
 
@@ -205,16 +205,16 @@ export const GameThree: React.FC = () => {
           onDrop={handleDropOnZone}
           animate={isError ? { x: [-8, 8, -8, 8, -4, 4, 0] } : {}}
           transition={{ duration: 0.5 }}
-          className={`w-full bg-slate-950/60 border border-dashed rounded-2xl p-6 md:p-8 flex flex-wrap items-center justify-center gap-3 min-h-[140px] mb-6 shadow-inner transition-colors duration-300 ${
+          className={`w-full bg-slate-100 dark:bg-slate-950/60 border-2 border-dashed rounded-2xl p-6 md:p-8 flex flex-wrap items-center justify-center gap-3 min-h-[140px] mb-6 shadow-inner transition-colors duration-300 ${
             proverbStatus === 'success' 
-              ? 'border-emerald-500 bg-emerald-500/10' 
+              ? 'border-emerald-400 dark:border-emerald-500 bg-emerald-50 dark:bg-emerald-500/10' 
               : isError 
-                ? 'border-rose-500 bg-rose-500/10 shadow-[0_0_15px_rgba(244,63,94,0.15)]' 
-                : 'border-slate-850'
+                ? 'border-rose-400 dark:border-rose-500 bg-rose-50 dark:bg-rose-500/10 shadow-[0_0_15px_rgba(244,63,94,0.1)]' 
+                : 'border-slate-200 dark:border-slate-850'
           }`}
         >
           {placedWords.length === 0 && (
-            <div className="text-xs md:text-sm font-bold text-slate-650 uppercase tracking-wider font-display select-none">
+            <div className="text-xs md:text-sm font-bold text-slate-400 dark:text-slate-600 uppercase tracking-wider font-display select-none">
               Сөздерді осында сүйреңіз немесе басыңыз
             </div>
           )}
@@ -231,10 +231,10 @@ export const GameThree: React.FC = () => {
                 onClick={() => handleWordClick(word, idx, true)}
                 className={`px-4 py-2.5 rounded-xl border font-bold font-display text-base cursor-pointer select-none transition-all active:scale-95 ${
                   proverbStatus === 'success'
-                    ? 'bg-emerald-650 text-white border-emerald-550 shadow-none'
+                    ? 'bg-emerald-500 text-white border-emerald-400 shadow-none'
                     : isError
-                      ? 'bg-rose-950/80 border-rose-800 text-rose-200'
-                      : 'bg-slate-900 hover:bg-slate-850 border-slate-800 text-white'
+                      ? 'bg-rose-50 dark:bg-rose-950/80 border-rose-300 dark:border-rose-800 text-rose-700 dark:text-rose-200'
+                      : 'bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 border-slate-200 dark:border-slate-800 text-slate-800 dark:text-white'
                 }`}
               >
                 {word}
@@ -263,7 +263,7 @@ export const GameThree: React.FC = () => {
           <div 
             onDragOver={handleDragOver}
             onDrop={handleDropOnAvailableZone}
-            className="w-full bg-slate-950/40 border border-slate-850 rounded-2xl p-6 md:p-8 flex flex-wrap items-center justify-center gap-3 min-h-[120px] mb-8 shadow-inner"
+            className="w-full bg-slate-50 dark:bg-slate-950/40 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 md:p-8 flex flex-wrap items-center justify-center gap-3 min-h-[120px] mb-8 shadow-inner"
           >
             <AnimatePresence>
               {availableWords.map((word, idx) => (
@@ -275,7 +275,7 @@ export const GameThree: React.FC = () => {
                   draggable
                   onDragStart={(e) => handleDragStart(e as unknown as React.DragEvent, word, idx, 'available')}
                   onClick={() => handleWordClick(word, idx, false)}
-                  className="px-4 py-2.5 bg-slate-900 hover:bg-slate-850 border border-slate-800 text-slate-300 rounded-xl font-bold font-display text-base shadow-md cursor-pointer select-none transition-all hover:scale-105 active:scale-95 hover:text-white"
+                  className="px-4 py-2.5 bg-white dark:bg-slate-900 hover:bg-slate-50 dark:hover:bg-slate-850 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 rounded-xl font-bold font-display text-base shadow-sm dark:shadow-md cursor-pointer select-none transition-all hover:scale-105 active:scale-95 hover:text-slate-900 dark:hover:text-white"
                 >
                   {word}
                 </motion.div>
@@ -290,7 +290,7 @@ export const GameThree: React.FC = () => {
           {proverbStatus !== 'success' && placedWords.length > 0 && (
             <button
               onClick={handleResetAttempt}
-              className="flex-1 py-3 px-6 bg-slate-950 hover:bg-slate-900 border border-slate-800 text-slate-450 font-bold font-display text-xs uppercase tracking-wider rounded-xl shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-1.5"
+              className="flex-1 py-3 px-6 bg-white dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 font-bold font-display text-xs uppercase tracking-wider rounded-xl shadow-sm dark:shadow-lg hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-1.5"
             >
               <RotateCcw className="w-4 h-4 stroke-[2.5px]" />
               <span>ТАЗАРТУ</span>

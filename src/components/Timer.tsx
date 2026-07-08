@@ -33,10 +33,10 @@ export const Timer: React.FC = () => {
   const strokeDashoffset = circumference * (1 - timeLeft / 120);
 
   return (
-    <div className="flex flex-col items-center gap-5 bg-slate-800/80 backdrop-blur-xl border border-slate-700/50 p-6 rounded-3xl shadow-xl relative w-full max-w-[280px]">
+    <div className="flex flex-col items-center gap-5 bg-white dark:bg-slate-800/80 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 p-6 rounded-3xl shadow-md dark:shadow-xl relative w-full max-w-[280px] transition-colors">
       
       {/* Timer Circle */}
-      <div className={`relative w-40 h-40 flex items-center justify-center rounded-full bg-slate-950/60 border border-slate-800 shadow-inner ${glowClass} transition-all duration-500`}>
+      <div className={`relative w-40 h-40 flex items-center justify-center rounded-full bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-800 shadow-inner ${glowClass} transition-all duration-500`}>
         {/* SVG Progress Circle */}
         <svg className="w-full h-full transform -rotate-90" viewBox="0 0 140 140">
           {/* Background Circle */}
@@ -44,7 +44,7 @@ export const Timer: React.FC = () => {
             cx="70"
             cy="70"
             r={radius}
-            className="stroke-slate-850"
+            className="stroke-slate-200 dark:stroke-slate-850"
             strokeWidth={strokeWidth}
             fill="transparent"
           />
@@ -64,7 +64,7 @@ export const Timer: React.FC = () => {
 
         {/* Time Text */}
         <div className="absolute flex flex-col items-center justify-center text-center">
-          <span className={`text-5xl font-black font-display tracking-tighter text-white ${timeLeft <= 10 ? 'animate-bounce-gentle' : ''}`}>
+          <span className={`text-5xl font-black font-display tracking-tighter text-slate-900 dark:text-white ${timeLeft <= 10 ? 'animate-bounce-gentle' : ''}`}>
             {timeLeft}
           </span>
           <span className="text-[10px] font-black font-display text-slate-500 uppercase tracking-widest -mt-1">

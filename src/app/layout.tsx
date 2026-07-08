@@ -1,12 +1,22 @@
 import type { Metadata } from "next";
-import { Manrope } from "next/font/google";
+import { Nunito, Inter } from "next/font/google";
 import "./globals.css";
 import { GameProvider } from "../context/GameContext";
 
-const manrope = Manrope({
-  variable: "--font-manrope",
+// Display/heading font — bold, rounded, energetic
+const nunito = Nunito({
+  variable: "--font-display",
   subsets: ["latin", "cyrillic"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+});
+
+// Body font — clean, readable
+const inter = Inter({
+  variable: "--font-sans",
+  subsets: ["latin", "cyrillic"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,7 +34,7 @@ export default function RootLayout({
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
       </head>
-      <body className={`${manrope.variable} font-sans h-full bg-[#0F172A] text-slate-100 min-h-full flex flex-col antialiased`}>
+      <body className={`${nunito.variable} ${inter.variable} font-sans h-full bg-slate-50 dark:bg-[#0F172A] text-slate-900 dark:text-slate-100 min-h-full flex flex-col antialiased transition-colors duration-300`}>
         <GameProvider>
           {children}
         </GameProvider>

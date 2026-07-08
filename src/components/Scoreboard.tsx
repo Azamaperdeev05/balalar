@@ -30,10 +30,10 @@ export const Scoreboard: React.FC = () => {
         className="max-w-xl flex flex-col items-center gap-2 mb-8 md:mb-12"
       >
         <span className="text-3xl md:text-5xl animate-bounce-gentle">🏆</span>
-        <h1 className="text-4xl md:text-5xl font-extrabold font-display tracking-tight text-white mt-2">
+        <h1 className="text-4xl md:text-5xl font-extrabold font-display tracking-tight text-slate-900 dark:text-white mt-2">
           Ұпайлар есебі
         </h1>
-        <p className="text-xs md:text-sm font-semibold text-slate-400 uppercase tracking-widest font-display">
+        <p className="text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-widest font-display">
           Командалардың жинаған ұпайлары
         </p>
       </motion.div>
@@ -50,8 +50,8 @@ export const Scoreboard: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 100, damping: 12, delay: idx * 0.1 }}
-              className={`bg-slate-800/80 border border-slate-700/50 rounded-3xl p-6 md:p-8 flex flex-col items-center gap-5 shadow-xl relative transition-all duration-300 ${
-                isWinner ? 'border-emerald-500/50 shadow-neon-success bg-slate-800/90' : ''
+              className={`bg-white/90 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 rounded-3xl p-6 md:p-8 flex flex-col items-center gap-5 shadow-md dark:shadow-xl relative transition-all duration-300 ${
+                isWinner ? 'border-emerald-400 dark:border-emerald-500/50 shadow-none ring-2 ring-emerald-400/30' : ''
               }`}
             >
               {/* Winner Cup Banner */}
@@ -75,7 +75,7 @@ export const Scoreboard: React.FC = () => {
               </div>
 
               {/* Team Name */}
-              <h3 className="text-lg md:text-xl font-bold font-display text-white">
+              <h3 className="text-lg md:text-xl font-bold font-display text-slate-900 dark:text-white">
                 {team.label}
               </h3>
 
@@ -83,15 +83,15 @@ export const Scoreboard: React.FC = () => {
               <motion.div 
                 key={team.score}
                 initial={{ scale: 1.3, color: '#10b981' }}
-                animate={{ scale: 1, color: '#ffffff' }}
-                className="text-6xl md:text-7xl font-black font-display tracking-tight text-white select-none my-1"
+                animate={{ scale: 1 }}
+                className="text-6xl md:text-7xl font-black font-display tracking-tight text-slate-900 dark:text-white select-none my-1"
               >
                 {team.score}
               </motion.div>
 
               {/* Modern Gamified Progress Bar */}
               <div className="w-full flex flex-col gap-1.5 mt-1">
-                <div className="w-full bg-slate-950 h-3.5 rounded-full overflow-hidden border border-slate-800 p-[2px]">
+                <div className="w-full bg-slate-100 dark:bg-slate-950 h-3.5 rounded-full overflow-hidden border border-slate-200 dark:border-slate-800 p-[2px]">
                   <motion.div 
                     className="h-full bg-gradient-to-r from-[#4F46E5] to-[#06B6D4] rounded-full"
                     initial={{ width: 0 }}
@@ -124,12 +124,12 @@ export const Scoreboard: React.FC = () => {
               </div>
 
               {/* Score Add buttons */}
-              <div className="flex items-center gap-2 w-full mt-2 border-t border-slate-700/35 pt-4">
+              <div className="flex items-center gap-2 w-full mt-2 border-t border-slate-200 dark:border-slate-700/35 pt-4">
                 {[1, 2, 3].map((amount) => (
                   <button
                     key={amount}
                     onClick={() => addScore(team.id, amount)}
-                    className="flex-1 py-2 bg-slate-950 hover:bg-slate-900 hover:text-white border border-slate-800 text-slate-400 rounded-xl font-bold font-display text-sm shadow-md hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-0.5"
+                    className="flex-1 py-2 bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-900 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-slate-800 text-slate-500 dark:text-slate-400 rounded-xl font-bold font-display text-sm shadow-sm dark:shadow-md hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-0.5"
                   >
                     <Plus className="w-3 h-3 stroke-[2.5px]" />
                     <span>{amount}</span>
@@ -149,7 +149,7 @@ export const Scoreboard: React.FC = () => {
       >
         <button
           onClick={resetScores}
-          className="px-5 py-3 bg-slate-950 hover:bg-slate-900 border border-slate-800 text-slate-500 hover:text-rose-400 font-bold font-display tracking-wider rounded-xl shadow-md hover:scale-103 active:scale-95 transition-all flex items-center gap-2 text-xs uppercase"
+          className="px-5 py-3 bg-white dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-500 hover:text-rose-500 font-bold font-display tracking-wider rounded-xl shadow-sm dark:shadow-md hover:scale-103 active:scale-95 transition-all flex items-center gap-2 text-xs uppercase"
         >
           <RefreshCw className="w-3.5 h-3.5 stroke-[2.5px]" />
           <span>ЕСЕПТІ НӨЛДЕУ</span>

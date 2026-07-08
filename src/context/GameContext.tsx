@@ -114,6 +114,10 @@ interface GameContextProps {
   setAudioEnabled: (enabled: boolean) => void;
   musicTheme: 'cheerful' | 'calm' | 'retro';
   setMusicTheme: (theme: 'cheerful' | 'calm' | 'retro') => void;
+  
+  // Visual theme
+  theme: 'dark' | 'light';
+  setTheme: (theme: 'dark' | 'light') => void;
 }
 
 const GameContext = createContext<GameContextProps | undefined>(undefined);
@@ -148,10 +152,9 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
   
   // Game state trackers
-  const [crocWord, setCrocWord] = useState<string>(() => {
-    const randomIndex = Math.floor(Math.random() * CROCODILE_WORDS.length);
-    return CROCODILE_WORDS[randomIndex];
-  });
+  const [crocWordIndex, setCrocWordIndex] = useState<number>(0);
+  const crocWord = CROCODILE_WORDS[crocWordIndex];
+  
   const [isWordVisible, setIsWordVisible] = useState<boolean>(false);
   
   const [searchTask, setSearchTask] = useState<string>(() => {
@@ -166,6 +169,24 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   // Audio state
   const [audioEnabled, setAudioEnabled] = useState<boolean>(true);
   const [musicTheme, setMusicThemeState] = useState<'cheerful' | 'calm' | 'retro'>('cheerful');
+
+  // Visual theme state
+  const [theme, setThemeState] = useState<'dark' | 'light'>('light');
+
+  // Handle theme changes
+  useEffect(() => {
+    const root = document.documentElement;
+    if (theme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [theme]);
+
+  const setTheme = (newTheme: 'dark' | 'light') => {
+    soundManager.playPop();
+    setThemeState(newTheme);
+  };
 
   // Trigger pop sound and auto-start timer when switching to game screen
   const setActiveScreen = (screen: ScreenType) => {
@@ -260,8 +281,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const nextCrocWord = () => {
     soundManager.playPop();
-    const randomIndex = Math.floor(Math.random() * CROCODILE_WORDS.length);
-    setCrocWord(CROCODILE_WORDS[randomIndex]);
+    setCrocWordIndex((prev) => (prev + 1) % CROCODILE_WORDS.length);
     setIsWordVisible(false);
     resetTimer(false); // Reset to 120s but don't start until word is revealed
   };
@@ -322,7 +342,9 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         audioEnabled,
         setAudioEnabled,
         musicTheme,
-        setMusicTheme
+        setMusicTheme,
+        theme,
+        setTheme
       }}
     >
       {children}

@@ -22,8 +22,8 @@ export const GameTwo: React.FC = () => {
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10 select-none">
       
-      <span className="text-xs md:text-sm font-semibold bg-slate-800 border border-slate-700 text-slate-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display flex items-center gap-2 flex-shrink-0">
-        <BookOpen className="w-5 h-5 stroke-[2.5px] text-indigo-400" />
+      <span className="text-xs md:text-sm font-semibold bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 px-5 py-2.5 rounded-xl uppercase tracking-wider font-display flex items-center gap-2 flex-shrink-0 shadow-sm">
+        <BookOpen className="w-5 h-5 stroke-[2.5px] text-indigo-500 dark:text-indigo-400" />
         Сөзді тауып көр 📖
       </span>
 
@@ -33,22 +33,22 @@ export const GameTwo: React.FC = () => {
         initial={{ scale: 0.98, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 100, damping: 12 }}
-        className="w-full bg-slate-800/80 border border-slate-700/50 text-white rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
+        className="w-full bg-white/90 dark:bg-slate-800/80 border border-slate-200 dark:border-slate-700/50 rounded-3xl p-6 md:p-10 flex flex-col items-center justify-center shadow-xl relative overflow-hidden"
       >
         {/* Rules explanation */}
-        <p className="text-xs md:text-sm font-semibold text-slate-400 max-w-xl text-center mb-6 leading-relaxed">
+        <p className="text-xs md:text-sm font-semibold text-slate-500 dark:text-slate-400 max-w-xl text-center mb-6 leading-relaxed">
           Әр топқа бірдей кітап беріледі. Төмендегі тапсырманы кітап беттерінен немесе бөлмеден мүмкіндігінше ең бірінші болып тауып көрсеткен команда ұпай алады!
         </p>
 
         {/* Task display area */}
-        <div className="w-full max-w-xl bg-slate-950/60 border border-slate-850 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-6 mb-6 shadow-inner min-h-[220px] justify-center">
+        <div className="w-full max-w-xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-slate-850 rounded-2xl p-6 md:p-8 flex flex-col items-center gap-6 mb-6 shadow-inner min-h-[220px] justify-center">
           {/* Custom Illustration */}
-          <div className="w-28 h-28 md:w-36 md:h-36 bg-slate-900 border border-slate-850 rounded-xl flex items-center justify-center p-2.5 shadow-md">
+          <div className="w-28 h-28 md:w-36 md:h-36 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-850 rounded-xl flex items-center justify-center p-2.5 shadow-md">
             <Illustration type={illustrationType} className="w-full h-full object-contain" />
           </div>
 
           {/* Active task text */}
-          <h2 className="text-xl md:text-2xl font-extrabold font-display text-white text-center tracking-wide leading-snug">
+          <h2 className="text-xl md:text-2xl font-extrabold font-display text-slate-900 dark:text-white text-center tracking-wide leading-snug">
             {searchTask}
           </h2>
         </div>

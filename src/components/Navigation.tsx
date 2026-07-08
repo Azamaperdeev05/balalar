@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useGame, ScreenType } from '../context/GameContext';
-import { Volume2, VolumeX, Music, Home, Trophy, Gamepad2 } from 'lucide-react';
+import { Volume2, VolumeX, Music, Home, Trophy, Gamepad2, Sun, Moon } from 'lucide-react';
 
 export const Header: React.FC = () => {
   const { 
@@ -11,7 +11,9 @@ export const Header: React.FC = () => {
     audioEnabled, 
     setAudioEnabled,
     musicTheme,
-    setMusicTheme
+    setMusicTheme,
+    theme,
+    setTheme
   } = useGame();
 
   const handleNavClick = (screen: ScreenType) => {
@@ -25,7 +27,7 @@ export const Header: React.FC = () => {
   ];
 
   return (
-    <header className="w-full bg-slate-900/80 backdrop-blur-xl border-b border-slate-800 px-4 md:px-8 py-3.5 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 z-40 relative shadow-xl">
+    <header className="w-full bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border-b border-slate-200 dark:border-slate-800 px-4 md:px-8 py-3.5 md:py-4 flex flex-col sm:flex-row items-center justify-between gap-4 z-40 relative shadow-md dark:shadow-xl transition-colors">
       {/* Brand logo */}
       <div 
         onClick={() => handleNavClick('welcome')}
@@ -38,7 +40,7 @@ export const Header: React.FC = () => {
       </div>
 
       {/* Navigation menu */}
-      <nav className="flex items-center gap-1 md:gap-1.5 bg-slate-950 p-1.5 rounded-2xl border border-slate-800">
+      <nav className="flex items-center gap-1 md:gap-1.5 bg-slate-100 dark:bg-slate-950 p-1.5 rounded-2xl border border-slate-200 dark:border-slate-800 transition-colors">
         {navItems.map((item) => {
           const isActive = activeScreen === item.id;
           return (
@@ -48,7 +50,7 @@ export const Header: React.FC = () => {
               className={`flex items-center gap-1.5 md:gap-2 px-4 md:px-6 py-2.5 rounded-xl text-sm md:text-base font-bold font-display tracking-wide transition-all ${
                 isActive 
                   ? 'bg-gradient-to-r from-[#4F46E5] to-[#6366F1] text-white shadow-[0_0_20px_rgba(99,102,241,0.3)]' 
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800 hover:scale-103'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-slate-200 dark:hover:bg-slate-800 hover:scale-103'
               }`}
             >
               {item.icon}
@@ -60,13 +62,23 @@ export const Header: React.FC = () => {
 
       {/* Sound & Settings controls */}
       <div className="flex items-center gap-2">
+        {/* Toggle Theme */}
+        <button
+          onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+          className={`p-2.5 rounded-xl border transition-all active:scale-95 bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-850 dark:text-slate-500 dark:border-slate-800 hover:bg-slate-200 dark:hover:bg-slate-800`}
+          aria-label="Теманы ауыстыру"
+          title={theme === 'dark' ? 'Жарық тема' : 'Қараңғы тема'}
+        >
+          {theme === 'dark' ? <Sun className="w-5 h-5 stroke-[2.5px]" /> : <Moon className="w-5 h-5 stroke-[2.5px]" />}
+        </button>
+
         {/* Toggle Sound */}
         <button
           onClick={() => setAudioEnabled(!audioEnabled)}
           className={`p-2.5 rounded-xl border transition-all active:scale-95 ${
             audioEnabled 
               ? 'bg-gradient-to-r from-[#4F46E5] to-[#6366F1] border-indigo-500/30 text-white shadow-[0_0_15px_rgba(99,102,241,0.3)]' 
-              : 'bg-slate-850 text-slate-500 border-slate-800'
+              : 'bg-slate-100 text-slate-600 border-slate-200 dark:bg-slate-850 dark:text-slate-500 dark:border-slate-800'
           }`}
           aria-label="Дыбысты қосу/өшіру"
           title={audioEnabled ? "Дыбысты өшіру" : "Дыбысты қосу"}
@@ -78,7 +90,7 @@ export const Header: React.FC = () => {
         {audioEnabled && (
           <div className="relative group">
             <button 
-              className="p-2.5 rounded-xl bg-slate-800 text-slate-200 border border-slate-700 flex items-center gap-1.5 hover:bg-slate-700 transition-colors shadow-md"
+              className="p-2.5 rounded-xl bg-slate-100 text-slate-600 border border-slate-200 dark:bg-slate-800 dark:text-slate-200 dark:border-slate-700 flex items-center gap-1.5 hover:bg-slate-200 dark:hover:bg-slate-700 transition-colors shadow-sm dark:shadow-md"
               title="Музыка түрін таңдау"
             >
               <Music className="w-5 h-5 stroke-[2.5px]" />
@@ -88,22 +100,22 @@ export const Header: React.FC = () => {
             </button>
             
             {/* Dropdown Menu */}
-            <div className="absolute right-0 mt-2 w-36 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div className="absolute right-0 mt-2 w-36 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl dark:shadow-2xl overflow-hidden opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
               <button
                 onClick={() => setMusicTheme('cheerful')}
-                className={`w-full text-left px-4 py-2.5 text-xs font-bold font-display hover:bg-slate-800 ${musicTheme === 'cheerful' ? 'bg-indigo-600 text-white' : 'text-slate-350'}`}
+                className={`w-full text-left px-4 py-2.5 text-xs font-bold font-display hover:bg-slate-100 dark:hover:bg-slate-800 ${musicTheme === 'cheerful' ? 'bg-indigo-50 dark:bg-indigo-600 text-indigo-700 dark:text-white' : 'text-slate-600 dark:text-slate-350'}`}
               >
                 🥳 Көңілді
               </button>
               <button
                 onClick={() => setMusicTheme('calm')}
-                className={`w-full text-left px-4 py-2.5 text-xs font-bold font-display hover:bg-slate-800 ${musicTheme === 'calm' ? 'bg-indigo-600 text-white' : 'text-slate-350'}`}
+                className={`w-full text-left px-4 py-2.5 text-xs font-bold font-display hover:bg-slate-100 dark:hover:bg-slate-800 ${musicTheme === 'calm' ? 'bg-indigo-50 dark:bg-indigo-600 text-indigo-700 dark:text-white' : 'text-slate-600 dark:text-slate-350'}`}
               >
                 🍃 Қоңыр
               </button>
               <button
                 onClick={() => setMusicTheme('retro')}
-                className={`w-full text-left px-4 py-2.5 text-xs font-bold font-display hover:bg-slate-800 ${musicTheme === 'retro' ? 'bg-indigo-600 text-white' : 'text-slate-350'}`}
+                className={`w-full text-left px-4 py-2.5 text-xs font-bold font-display hover:bg-slate-100 dark:hover:bg-slate-800 ${musicTheme === 'retro' ? 'bg-indigo-50 dark:bg-indigo-600 text-indigo-700 dark:text-white' : 'text-slate-600 dark:text-slate-350'}`}
               >
                 👾 Ретро
               </button>
@@ -117,8 +129,8 @@ export const Header: React.FC = () => {
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="w-full bg-slate-950 border-t border-slate-900 py-4.5 text-center z-40 relative">
-      <span className="text-xs md:text-sm font-semibold font-display tracking-wider text-slate-500 block">
+    <footer className="w-full bg-slate-100 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-900 py-4.5 text-center z-40 relative transition-colors">
+      <span className="text-xs md:text-sm font-semibold font-display tracking-wider text-slate-500 dark:text-slate-500 block">
         🎮 BOOK GAMES — Жасөспірімдерге арналған кітап ойындары платформасы
       </span>
     </footer>
