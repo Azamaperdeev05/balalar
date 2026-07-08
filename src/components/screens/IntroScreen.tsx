@@ -7,7 +7,7 @@ import { soundManager } from '../../utils/SoundManager';
 interface IntroScreenProps {
   title: string;
   description: string;
-  illustrationType: 'children' | 'clapping' | 'jumping' | 'colors' | 'questions' | 'finish' | 'celebration';
+  illustrationType: 'children' | 'clapping' | 'jumping' | 'colors' | 'questions' | 'finish' | 'celebration' | 'book';
   onStart: () => void;
   animationsEnabled?: boolean;
 }

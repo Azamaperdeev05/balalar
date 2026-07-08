@@ -126,12 +126,12 @@ function App() {
     }
 
     if (activeScreen === 'game') {
-      // If we are in Game 2 (Yes/No) and not showing result yet, reveal result first!
-      if (gameIndex === 1 && stepIndex >= 0 && stepIndex < totalSteps && !showingResult) {
+      // If we are in Game 2 (Book search) or Game 3 (Proverb assembly) and not showing result yet, reveal result first!
+      if ((gameIndex === 1 || gameIndex === 2) && stepIndex >= 0 && stepIndex < totalSteps && !showingResult) {
         setShowingResult(true);
         soundManager.playChime();
         if (settings.autoPlay) {
-          setTimeLeft(4); // 4 seconds for action outcome
+          setTimeLeft(5); // 5 seconds for action outcome
           setTimerActive(true);
         }
         return;
@@ -261,14 +261,14 @@ function App() {
       }, 1000);
     } else if (timeLeft === 0) {
       // Timer finished!
-      if (gameIndex === 1) {
-        // Game 2 (Yes/No)
+      if (gameIndex === 1 || gameIndex === 2) {
+        // Game 2 (Book search) or Game 3 (Proverb assembly)
         if (!showingResult) {
-          // Timer finished on question countdown -> reveal result
+          // Timer finished on task countdown -> reveal result/answer
           setShowingResult(true);
           soundManager.playChime();
           if (settings.autoPlay) {
-            setTimeLeft(4); // 4 seconds of result display
+            setTimeLeft(5); // 5 seconds of result display
             setTimerActive(true);
           } else {
             setTimerActive(false);
@@ -278,7 +278,7 @@ function App() {
           handleNext();
         }
       } else {
-        // Game 1 or Game 3 (Actions or Colors)
+        // Game 1 (Crocodile drawing)
         if (settings.autoPlay) {
           handleNext();
         } else {
@@ -422,6 +422,7 @@ function App() {
           challenge={game3Challenges[stepIndex]}
           timeLeft={timeLeft}
           timerActive={timerActive}
+          showingResult={showingResult}
           animationsEnabled={settings.animationsEnabled}
         />
       );
@@ -446,7 +447,7 @@ function App() {
           totalSteps={totalSteps}
           timeLeft={timeLeft}
           timerActive={timerActive}
-          showTimer={timerActive || (gameIndex === 1 && showingResult)}
+          showTimer={timerActive || ((gameIndex === 1 || gameIndex === 2) && showingResult)}
           animationsEnabled={settings.animationsEnabled}
         />
       ) : null}

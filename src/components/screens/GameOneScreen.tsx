@@ -16,17 +16,16 @@ export const GameOneScreen: React.FC<GameOneScreenProps> = ({
   timerActive,
   animationsEnabled = true,
 }) => {
-  // Determine relevant illustration for each action
+  // Determine relevant illustration for each word
   const getIllustrationType = (title: string): any => {
     const t = title.toLowerCase();
-    if (t.includes('шапалақта')) return 'clapping';
-    if (t.includes('секір')) return 'jumping';
-    if (t.includes('айнал')) return 'spin';
-    if (t.includes('отыр')) return 'sit';
-    if (t.includes('тұр')) return 'stand';
-    if (t.includes('көтер')) return 'raise_hands';
-    if (t.includes('жүрек')) return 'heart';
-    if (t.includes('амандас')) return 'greet';
+    if (t.includes('домбыра')) return 'dombra';
+    if (t.includes('киіз үй')) return 'yurt';
+    if (t.includes('түйе')) return 'camel';
+    if (t.includes('қарбыз')) return 'watermelon';
+    if (t.includes('бүркіт')) return 'eagle';
+    if (t.includes('алтын адам')) return 'golden_man';
+    if (t.includes('қазан')) return 'qazan';
     return 'children';
   };
 
@@ -69,10 +68,10 @@ export const GameOneScreen: React.FC<GameOneScreenProps> = ({
             transition={{ type: 'spring', stiffness: 100, damping: 15 }}
             className="flex flex-col items-center md:items-start gap-4"
           >
-            <span className="text-2xl md:text-3xl font-black bg-white/25 px-6 py-2 rounded-full border-2 border-white/40 font-display tracking-widest uppercase">
-              Қайтала! 🙋‍♂️
+            <span className="text-2xl md:text-3xl font-bold bg-white/25 px-6 py-2 rounded-full border-2 border-white/40 font-display tracking-widest uppercase">
+              Сурет сал! 🎨
             </span>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black font-display tracking-wide text-white drop-shadow-md leading-tight">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-wide text-white drop-shadow-md leading-tight">
               {action.title}
             </h1>
           </motion.div>
@@ -87,17 +86,17 @@ export const GameOneScreen: React.FC<GameOneScreenProps> = ({
                   animate={animationsEnabled ? { scale: 1, opacity: 1 } : {}}
                   exit={animationsEnabled ? { scale: 0.6, opacity: 0 } : {}}
                   transition={{ type: 'spring', stiffness: 200, damping: 10 }}
-                  className="w-24 h-24 md:w-32 md:h-32 bg-yellow-400 border-8 border-white text-purple-950 rounded-full flex items-center justify-center font-display font-black text-5xl md:text-7xl shadow-playful"
+                  className="w-24 h-24 md:w-32 md:h-32 bg-yellow-400 border-8 border-white text-purple-950 rounded-full flex items-center justify-center font-display font-bold text-5xl md:text-7xl shadow-playful"
                 >
                   {timeLeft}
                 </motion.div>
               </AnimatePresence>
               <div className="text-left">
-                <div className="text-xl md:text-2xl font-black uppercase tracking-wider font-display text-yellow-300">
-                  Дайындал!
+                <div className="text-xl md:text-2xl font-bold uppercase tracking-wider font-display text-yellow-300">
+                  Уақыт басталды!
                 </div>
                 <div className="text-sm md:text-base font-bold text-white/90">
-                  Қимылды жылдам орында
+                  Сөзді қағазға суретпен сал!
                 </div>
               </div>
             </div>
