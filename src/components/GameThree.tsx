@@ -139,8 +139,7 @@ export const GameThree: React.FC = () => {
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10">
       
-      {/* Game Badge */}
-      <span className="text-lg md:text-xl font-bold bg-white/20 px-6 py-2.5 rounded-full border-2 border-white/40 tracking-widest uppercase font-display flex items-center gap-2 flex-shrink-0 text-white shadow-sm">
+      <span className="text-sm md:text-base font-black bg-purple-600 border-4 border-purple-950 text-white px-5 py-2.5 rounded-full shadow-md tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
         <Layers className="w-5 h-5 stroke-[3px]" />
         Мақалды құрастыр 🧩
       </span>

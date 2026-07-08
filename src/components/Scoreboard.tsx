@@ -28,7 +28,7 @@ export const Scoreboard: React.FC = () => {
         className="max-w-xl flex flex-col items-center gap-2 mb-8 md:mb-12"
       >
         <span className="text-3xl md:text-5xl animate-bounce-gentle">🏆</span>
-        <h1 className="text-4xl md:text-6xl font-black font-display tracking-wider text-purple-950 mt-2">
+        <h1 className="text-4xl md:text-6xl font-black font-display tracking-wider text-stroke-playful mt-2">
           Ұпайлар есебі
         </h1>
         <p className="text-sm md:text-base font-bold text-purple-900/60 uppercase tracking-widest font-display">

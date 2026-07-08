@@ -22,7 +22,7 @@ export default function Home() {
   ];
 
   return (
-    <div className="flex-1 flex flex-col h-full bg-grid-playful relative overflow-x-hidden">
+    <div className="flex-1 flex flex-col h-full bg-gradient-to-b from-purple-50 via-pink-50/20 to-purple-100/40 bg-grid-playful relative overflow-x-hidden">
       
       {/* Navigation Header */}
       <Header />

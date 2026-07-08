@@ -29,8 +29,7 @@ export const GameOne: React.FC = () => {
   return (
     <div className="w-full max-w-4xl flex flex-col items-center gap-6 md:gap-8 p-4 z-10">
       
-      {/* Game Badge */}
-      <span className="text-lg md:text-xl font-bold bg-white/20 px-6 py-2.5 rounded-full border-2 border-white/40 tracking-widest uppercase font-display flex items-center gap-2 flex-shrink-0 text-white shadow-sm">
+      <span className="text-sm md:text-base font-black bg-purple-600 border-4 border-purple-950 text-white px-5 py-2 rounded-full shadow-md tracking-wider uppercase font-display flex items-center gap-2 flex-shrink-0 rotate-[-1deg]">
         <Palette className="w-5 h-5 stroke-[3px]" />
         Крокодил ойыны 🎨
       </span>
@@ -114,7 +113,7 @@ export const GameOne: React.FC = () => {
           {/* Random Next word skip */}
           <button
             onClick={nextCrocWord}
-            className="w-full py-4 px-6 bg-emerald-500 hover:bg-emerald-400 text-white font-black font-display text-lg md:text-xl rounded-2xl border-4 border-purple-950 shadow-playful hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
+            className="w-full py-4 px-6 bg-orange-500 hover:bg-orange-400 text-white font-black font-display text-lg md:text-xl rounded-2xl border-4 border-purple-950 shadow-playful hover:scale-105 active:scale-95 transition-all flex items-center justify-center gap-2"
           >
             <SkipForward className="w-6 h-6 stroke-[3px]" />
             <span>КЕЛЕСІ СӨЗ</span>
