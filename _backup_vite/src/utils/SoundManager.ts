@@ -122,40 +122,6 @@ class SoundManager {
     }
   }
 
-  // Play a metallic bell chime sound for timer expiration
-  public playBell() {
-    if (!this.enabled) return;
-    try {
-      this.initContext();
-      if (!this.ctx) return;
-
-      const now = this.ctx.currentTime;
-      // Mix multiple sine frequencies to simulate natural metallic overtones of a bell
-      const freqs = [587.33, 880, 1200, 1500, 2200]; // D5, A5, and bell overtones
-      freqs.forEach((freq, idx) => {
-        if (!this.ctx) return;
-        const osc = this.ctx.createOscillator();
-        const gain = this.ctx.createGain();
-
-        osc.connect(gain);
-        gain.connect(this.ctx.destination);
-
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, now);
-
-        // First overtone is loudest and rings longest, others decay faster
-        const decay = 1.6 / (idx + 1);
-        gain.gain.setValueAtTime(idx === 0 ? 0.3 : 0.1, now);
-        gain.gain.exponentialRampToValueAtTime(0.001, now + decay);
-
-        osc.start(now);
-        osc.stop(now + decay + 0.05);
-      });
-    } catch (e) {
-      console.warn('Audio bell sound failed to play', e);
-    }
-  }
-
   // Play applause and celebration sound (filtered white noise + frequency sweeps)
   public playApplause() {
     if (!this.enabled) return;

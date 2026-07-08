@@ -1,0 +1,93 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-nunito), system-ui, sans-serif;
+  --font-display: var(--font-nunito), system-ui, sans-serif;
+  
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-float-slow: float 10s ease-in-out infinite;
+  --animate-float-reverse: float-reverse 8s ease-in-out infinite;
+  --animate-pulse-slow: pulse-slow 4s ease-in-out infinite;
+  --animate-bounce-gentle: bounce-gentle 2s ease-in-out infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  
+  --shadow-playful: 0 10px 0px 0px #1e1b4b, 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  --shadow-playful-active: 0 2px 0px 0px #1e1b4b, 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(2deg);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-2deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.02);
+  }
+}
+
+@keyframes bounce-gentle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Custom Base Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-sans);
+}
+
+/* Custom Utilities for Playful Aesthetics */
+@utility bg-grid-playful {
+  background-image: radial-gradient(rgba(120, 119, 198, 0.08) 2px, transparent 2px);
+  background-size: 40px 40px;
+}
+
+@utility text-stroke-playful {
+  -webkit-text-stroke: 4px white;
+  paint-order: stroke fill;
+  filter: drop-shadow(3px 3px 0px #4c1d95);
+  color: #4c1d95;
+}
+
+/* Custom Scrollbar (if any scroll container is ever used) */
+::-webkit-scrollbar {
+  width: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #fbbf24;
+  border-radius: 10px;
+  border: 3px solid #f1f1f1;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d97706;
+}
